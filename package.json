@@ -1,0 +1,14 @@
+{
+  "name": "sentinel-mesh",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "npm@11.6.2",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev -w @sentinel/web",
+    "build": "npm run build -w @sentinel/security-core && npm run build -w @sentinel/web",
+    "lint": "npm run lint -w @sentinel/web",
+    "typecheck": "npm run typecheck -w @sentinel/security-core && npm run typecheck -w @sentinel/web",
+    "test": "npm run test -w @sentinel/security-core"
+  }
+}

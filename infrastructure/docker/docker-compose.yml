@@ -1,0 +1,9 @@
+services:
+  web:
+    image: node:24-alpine
+    working_dir: /workspace
+    volumes:
+      - ../../:/workspace
+    ports:
+      - "3000:3000"
+    command: sh -c "npm install && npm run dev"
