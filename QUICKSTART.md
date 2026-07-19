@@ -1,17 +1,34 @@
-# Başlatma Rehberi
+# Sentinel Mesh Faz 2 — Hızlı Başlangıç
 
-## Gerekenler
-- Node.js 24 veya daha yeni sürüm
+## 1. Gerekenler
+
+- Node.js 22 veya üzeri
 - npm
+- Git
 
-## Kurulum
-1. ZIP dosyasını çıkarın.
-2. Klasörün içinde terminal açın.
-3. `npm install` komutunu çalıştırın.
-4. `npm run dev` komutunu çalıştırın.
-5. Tarayıcıdan `http://localhost:3000` adresini açın.
+## 2. Çalıştırma
 
-Ana ekrandaki örnek GitHub adresini değiştirmeden **Run security scan** düğmesine basarak ilk akışı görebilirsiniz.
+```bash
+npm install
+npm run dev
+```
 
-## Sonraki faz
-Phase 2'de simülasyon motoru gerçek Semgrep, Gitleaks ve OSV tarayıcı worker'larıyla değiştirilecektir. Mevcut arayüz ve risk motoru korunacaktır.
+Tarayıcıda `http://localhost:3000` adresini aç.
+
+## 3. Tarama
+
+Public bir GitHub repository URL'si gir ve **Run real scan** butonuna bas. İlk tarama repository boyutuna ve internet hızına göre zaman alabilir.
+
+## 4. Ücretsiz scanner seçenekleri
+
+Harici araç kurmadan Sentinel built-in scanner çalışır. Daha geniş analiz için bilgisayarına şu ücretsiz araçları kurabilirsin:
+
+- Semgrep
+- Gitleaks
+- OSV-Scanner
+
+Sistem kurulu araçları otomatik algılar. API key gerekmez.
+
+## 5. Önemli
+
+Scanner binary'leri ve `node_modules` ZIP'e eklenmemiştir. Bu nedenle proje paketi küçük kalır.
