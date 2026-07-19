@@ -1,0 +1,1 @@
+import {readFile} from "node:fs/promises"; import {fileURLToPath} from "node:url"; import {dirname,resolve} from "node:path"; import {getPool} from "./client"; const here=dirname(fileURLToPath(import.meta.url)); const sql=await readFile(resolve(here,"../migrations/001_initial.sql"),"utf8"); await getPool().query(sql); console.log("Migration completed"); await getPool().end();

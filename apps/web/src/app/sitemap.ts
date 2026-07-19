@@ -1,5 +1,1 @@
-import type { MetadataRoute } from "next";
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
-  return [{ url: base, lastModified: new Date(), changeFrequency: "weekly", priority: 1 }];
-}
+import type {MetadataRoute} from "next";export default function sitemap():MetadataRoute.Sitemap{const b=process.env.APP_URL??"http://localhost:3000";return ["","/docs","/reports/demo"].map((p,i)=>({url:b+p,lastModified:new Date(),changeFrequency:i?"weekly":"monthly",priority:i?.7:1}))}

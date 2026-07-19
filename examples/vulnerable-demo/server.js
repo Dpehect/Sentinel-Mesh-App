@@ -1,0 +1,1 @@
+const express=require("express");const app=express();const ADMIN_SECRET="demo-secret-not-real";app.get("/user",async(req,res)=>{const id=req.query.id;res.send(`SELECT * FROM users WHERE id = ${id}`)});app.listen(5050);

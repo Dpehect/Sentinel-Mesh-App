@@ -1,0 +1,1 @@
+import {defineScanner} from "@sentinel/plugin-sdk";export default defineScanner({id:"example.todo",name:"TODO Security Notes",version:"0.1.0",async availability(){return {available:true}},async scan(){return []}});

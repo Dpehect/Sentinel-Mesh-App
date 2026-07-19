@@ -1,8 +1,1 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  transpilePackages: ["@sentinel/security-core", "@sentinel/scanner-runner"],
-  experimental: { optimizePackageImports: ["lucide-react"] },
-};
-
-export default nextConfig;
+import type {NextConfig} from "next";const config:NextConfig={transpilePackages:["@sentinel/security-core"],experimental:{optimizePackageImports:["lucide-react"]},headers:async()=>[{source:"/(.*)",headers:[{key:"X-Content-Type-Options",value:"nosniff"},{key:"Referrer-Policy",value:"strict-origin-when-cross-origin"},{key:"Permissions-Policy",value:"camera=(), microphone=(), geolocation=()"}]}]};export default config;

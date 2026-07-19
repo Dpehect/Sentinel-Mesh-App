@@ -1,0 +1,1 @@
+import {getPool} from "./client"; const p=getPool(); await p.query(`insert into organizations(name,slug) values('Sentinel Demo','sentinel-demo') on conflict do nothing`); await p.query(`insert into users(email,name) values('demo@sentinel.local','Demo Security Engineer') on conflict do nothing`); console.log("Seed completed"); await p.end();

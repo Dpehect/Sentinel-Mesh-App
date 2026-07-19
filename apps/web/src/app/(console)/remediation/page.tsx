@@ -1,0 +1,4 @@
+import {demo} from "@/lib/demo";export default function Remediation(){return <><div className="eyebrow">Root-cause workflow</div><h1 className="title">Remediation center</h1><p className="subtitle">Prioritized engineering work with verification steps and regression protection.</p><div className="grid" style={{marginTop:24}}>{demo.findings.map((f,i)=><article className="card" key={f.id}><div style={{display:"flex",justifyContent:"space-between"}}><div><span className={f.severity}>{f.severity.toUpperCase()}</span><h2 className="section-title" style={{marginTop:8}}>{f.title}</h2></div><span className="badge">Priority {i+1}</span></div><p className="muted">{f.remediation}</p><div className="code">1. Confirm the affected trust boundary.
+2. Apply the smallest secure code change.
+3. Add authorization/input/security regression coverage.
+4. Re-run all scanners and compare the attack graph.</div></article>)}</div></>}

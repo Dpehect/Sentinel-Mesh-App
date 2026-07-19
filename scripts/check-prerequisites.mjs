@@ -1,0 +1,1 @@
+import {spawnSync} from "node:child_process";for(const cmd of ["node","npm","git","semgrep","gitleaks","osv-scanner"]){const r=spawnSync(process.platform==="win32"?"where":"which",[cmd]);console.log(`${cmd.padEnd(14)} ${r.status===0?"available":"optional/missing"}`)}

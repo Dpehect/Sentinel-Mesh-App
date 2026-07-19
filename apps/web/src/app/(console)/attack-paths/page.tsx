@@ -1,0 +1,1 @@
+import {AttackPathView} from "@/components/attack-path-view";export default function AttackPaths(){return <><div className="eyebrow">Reachability intelligence</div><h1 className="title">Attack paths</h1><p className="subtitle">Explainable routes from public entry points to high-value assets.</p><div style={{marginTop:24}}><AttackPathView/></div></>}

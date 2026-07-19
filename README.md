@@ -1,40 +1,34 @@
-# Sentinel Mesh — Phase 3
+# Sentinel Mesh
 
-Open-source, local-first software security intelligence and attack-path simulation platform.
+Local-first software security intelligence and attack-path simulation platform.
 
-Phase 3 delivers a real public-repository scanning pipeline with an ephemeral clone workspace, deterministic built-in rules, optional Semgrep/Gitleaks/OSV adapters, normalized findings, contextual scoring, live job progress and attack-path correlation.
+## What is included
 
-## Run
+- Next.js product UI with dashboard, projects, scans, findings, attack paths, remediation, reports and settings.
+- Fastify worker API and scanner orchestration.
+- Built-in deterministic source scanner plus optional Semgrep, Gitleaks and OSV adapters.
+- Asset discovery, graph construction, attack-path scoring and defensive simulation.
+- PostgreSQL migration and seed data.
+- GitHub webhook verification and PR security diff model.
+- RBAC, tenant guards, audit events, plugin SDK, tests, Docker and CI.
+
+## Fastest start
 
 ```bash
 npm install
+cp .env.example .env
 npm run dev
 ```
 
-Open `http://localhost:3000`.
+Open http://localhost:3000. With `DEMO_MODE=true` the application works without PostgreSQL, Redis, GitHub credentials or scanner binaries.
 
-## Commands
+## Full local stack
 
 ```bash
+docker compose up -d postgres redis
+npm run db:migrate
+npm run db:seed
 npm run dev
-npm run typecheck
-npm run test
-npm run build
 ```
 
-## Architecture
-
-```text
-Browser
-  -> POST /api/scans
-  -> asynchronous scan job
-  -> ephemeral Git clone
-  -> built-in + optional external scanners
-  -> normalized findings
-  -> risk engine
-  -> attack-path correlation
-  -> GET /api/scans/:id polling
-  -> dynamic command center
-```
-
-Detailed notes: `docs/PHASE-2.md`.
+Optional scanners are documented in `docs/INSTALL-SCANNERS.md`. Their binaries are intentionally not included.

@@ -1,34 +1,9 @@
-# Sentinel Mesh Faz 2 — Hızlı Başlangıç
+# İnterneti az kullanan kurulum
 
-## 1. Gerekenler
+1. ZIP'i çıkar.
+2. İnternet bulduğunda yalnızca `npm install` çalıştır.
+3. `.env.example` dosyasını `.env` olarak kopyala.
+4. `npm run dev` çalıştır.
+5. http://localhost:3000 adresini aç.
 
-- Node.js 22 veya üzeri
-- npm
-- Git
-
-## 2. Çalıştırma
-
-```bash
-npm install
-npm run dev
-```
-
-Tarayıcıda `http://localhost:3000` adresini aç.
-
-## 3. Tarama
-
-Public bir GitHub repository URL'si gir ve **Run real scan** butonuna bas. İlk tarama repository boyutuna ve internet hızına göre zaman alabilir.
-
-## 4. Ücretsiz scanner seçenekleri
-
-Harici araç kurmadan Sentinel built-in scanner çalışır. Daha geniş analiz için bilgisayarına şu ücretsiz araçları kurabilirsin:
-
-- Semgrep
-- Gitleaks
-- OSV-Scanner
-
-Sistem kurulu araçları otomatik algılar. API key gerekmez.
-
-## 5. Önemli
-
-Scanner binary'leri ve `node_modules` ZIP'e eklenmemiştir. Bu nedenle proje paketi küçük kalır.
+Varsayılan demo modu gerçek ürün ekranlarını ve yerleşik tarayıcıyı harici servis olmadan çalıştırır. Semgrep/Gitleaks/OSV daha sonra kurulabilir.

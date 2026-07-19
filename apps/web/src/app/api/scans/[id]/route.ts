@@ -1,12 +1,1 @@
-import { NextResponse } from "next/server";
-import { getScanJob } from "@/lib/scan-jobs";
-
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
-
-export async function GET(_: Request, context: { params: Promise<{ id: string }> }) {
-  const { id } = await context.params;
-  const job = getScanJob(id);
-  if (!job) return NextResponse.json({ error: "Scan job not found" }, { status: 404 });
-  return NextResponse.json(job, { headers: { "Cache-Control": "no-store" } });
-}
+import {NextResponse} from "next/server";import {demo} from "@/lib/demo";let n=35;export async function GET(_:Request,{params}:{params:Promise<{id:string}>}){const {id}=await params;if(process.env.DEMO_MODE!=="false"){n=Math.min(100,n+25);return NextResponse.json({id,status:n===100?"complete":"scanning",progress:n,logs:["Repository cloned","Built-in scanner complete","Asset discovery complete",...(n===100?["Attack graph generated"]:[])],result:n===100?demo:undefined})}const r=await fetch(`${process.env.WORKER_URL??"http://localhost:4010"}/jobs/${id}`,{cache:"no-store"});return new NextResponse(await r.text(),{status:r.status,headers:{"content-type":"application/json"}})}

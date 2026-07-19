@@ -1,0 +1,2 @@
+import {describe,it,expect} from "vitest"; import {securityScore,simulateControls} from "./risk";
+describe("risk",()=>{it("reduces score when findings exist",()=>{expect(securityScore([{id:"1",ruleId:"x",title:"x",description:"x",severity:"critical",confidence:1,category:"secret",scanner:"builtin",evidence:[],fingerprint:"x"}],[])).toBeLessThan(100)});it("controls reduce path",()=>{expect(simulateControls({id:"p",title:"p",steps:[],likelihood:90,impact:90,score:81,controls:[]},["authorization"]).residual).toBeLessThan(81)})});

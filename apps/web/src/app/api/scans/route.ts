@@ -1,15 +1,1 @@
-import { NextResponse } from "next/server";
-import { createScanJob } from "@/lib/scan-jobs";
-import { z } from "zod";
-
-export const runtime = "nodejs";
-export const maxDuration = 60;
-
-const schema = z.object({ repositoryUrl: z.string().url().refine((value) => /^https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/?$/.test(value), "Use a public GitHub repository URL") });
-
-export async function POST(request: Request) {
-  const parsed = schema.safeParse(await request.json());
-  if (!parsed.success) return NextResponse.json({ error: parsed.error.issues[0]?.message ?? "Invalid request" }, { status: 400 });
-  const job = createScanJob(parsed.data.repositoryUrl);
-  return NextResponse.json({ jobId: job.id, status: job.status }, { status: 202 });
-}
+import {NextResponse} from "next/server";import {demo} from "@/lib/demo";export async function GET(){return NextResponse.json([{id:"demo",status:"complete",progress:100,result:demo}])}export async function POST(req:Request){const body=await req.json();if(process.env.DEMO_MODE!=="false")return NextResponse.json({id:"demo-job",status:"scanning",progress:20,logs:[`Demo scan queued for ${body.repositoryUrl}`,"Built-in scanner ready"]},{status:202});const r=await fetch(`${process.env.WORKER_URL??"http://localhost:4010"}/jobs`,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(body)});return new NextResponse(await r.text(),{status:r.status,headers:{"content-type":"application/json"}})}

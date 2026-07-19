@@ -1,0 +1,10 @@
+{
+  "name": "@sentinel/example-scanner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@sentinel/plugin-sdk": "*",
+    "@sentinel/security-core": "*"
+  }
+}

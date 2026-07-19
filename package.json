@@ -1,17 +1,37 @@
 {
   "name": "sentinel-mesh",
-  "version": "0.3.0",
+  "version": "0.9.0",
   "private": true,
-  "packageManager": "npm@11.6.2",
+  "packageManager": "npm@10.9.2",
   "workspaces": [
     "apps/*",
-    "packages/*"
+    "packages/*",
+    "plugins/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w @sentinel/web",
-    "build": "npm run build -w @sentinel/security-core && npm run build -w @sentinel/scanner-runner && npm run build -w @sentinel/web",
-    "lint": "npm run lint -w @sentinel/web",
-    "typecheck": "npm run typecheck -w @sentinel/security-core && npm run typecheck -w @sentinel/scanner-runner && npm run typecheck -w @sentinel/web",
-    "test": "npm run test -w @sentinel/security-core"
+    "dev": "npm-run-all --parallel dev:web dev:worker",
+    "dev:web": "npm run dev -w @sentinel/web",
+    "dev:worker": "npm run dev -w @sentinel/worker",
+    "build": "npm-run-all build:packages build:apps",
+    "build:packages": "npm run build -w @sentinel/security-core && npm run build -w @sentinel/plugin-sdk && npm run build -w @sentinel/db && npm run build -w @sentinel/scanner-runner",
+    "build:apps": "npm run build -w @sentinel/web && npm run build -w @sentinel/worker",
+    "test": "npm-run-all test:core test:web",
+    "test:core": "npm run test -w @sentinel/security-core",
+    "test:web": "npm run test -w @sentinel/web",
+    "typecheck": "npm-run-all typecheck:*",
+    "typecheck:web": "npm run typecheck -w @sentinel/web",
+    "typecheck:worker": "npm run typecheck -w @sentinel/worker",
+    "typecheck:core": "npm run typecheck -w @sentinel/security-core",
+    "typecheck:db": "npm run typecheck -w @sentinel/db",
+    "lint": "npm-run-all lint:*",
+    "lint:web": "npm run lint -w @sentinel/web",
+    "lint:worker": "npm run lint -w @sentinel/worker",
+    "db:migrate": "npm run migrate -w @sentinel/db",
+    "db:seed": "npm run seed -w @sentinel/db",
+    "verify": "npm run typecheck && npm run test && npm run build"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.7.3"
   }
 }
