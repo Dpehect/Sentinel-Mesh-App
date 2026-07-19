@@ -1,9 +1,30 @@
-# İnterneti az kullanan kurulum
+# Sentinel Mesh — Quick Start
 
-1. ZIP'i çıkar.
-2. İnternet bulduğunda yalnızca `npm install` çalıştır.
-3. `.env.example` dosyasını `.env` olarak kopyala.
-4. `npm run dev` çalıştır.
-5. http://localhost:3000 adresini aç.
+## Demo interface without infrastructure
 
-Varsayılan demo modu gerçek ürün ekranlarını ve yerleşik tarayıcıyı harici servis olmadan çalıştırır. Semgrep/Gitleaks/OSV daha sonra kurulabilir.
+```bash
+npm install
+cp .env.example .env
+npm run dev:web
+```
+
+Keep `DEMO_MODE=true` and open http://localhost:3000.
+
+## Persistent production-like local mode
+
+```bash
+npm install
+cp .env.example .env
+# Set DEMO_MODE=false in .env
+docker compose up -d postgres redis
+npm run db:migrate
+npm run db:seed
+npm run dev
+```
+
+Open:
+
+- Web: http://localhost:3000
+- Worker health: http://localhost:4010/health
+
+The source ZIP intentionally excludes `node_modules`, Docker images and optional scanner binaries.

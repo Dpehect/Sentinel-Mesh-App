@@ -1,18 +1,10 @@
-# Sentinel Mesh
+# Sentinel Mesh — Phase 3
 
 Local-first software security intelligence and attack-path simulation platform.
 
-## What is included
+Phase 3 adds a TypeScript AST and framework-aware security engine on top of the PostgreSQL persistence and BullMQ/Valkey queue foundation.
 
-- Next.js product UI with dashboard, projects, scans, findings, attack paths, remediation, reports and settings.
-- Fastify worker API and scanner orchestration.
-- Built-in deterministic source scanner plus optional Semgrep, Gitleaks and OSV adapters.
-- Asset discovery, graph construction, attack-path scoring and defensive simulation.
-- PostgreSQL migration and seed data.
-- GitHub webhook verification and PR security diff model.
-- RBAC, tenant guards, audit events, plugin SDK, tests, Docker and CI.
-
-## Fastest start
+## Fast start
 
 ```bash
 npm install
@@ -20,15 +12,17 @@ cp .env.example .env
 npm run dev
 ```
 
-Open http://localhost:3000. With `DEMO_MODE=true` the application works without PostgreSQL, Redis, GitHub credentials or scanner binaries.
+With `DEMO_MODE=true`, the UI runs without infrastructure. For persistent scans, start PostgreSQL and Valkey with Docker Compose and set `DEMO_MODE=false`.
 
-## Full local stack
+## Phase 3 capabilities
 
-```bash
-docker compose up -d postgres redis
-npm run db:migrate
-npm run db:seed
-npm run dev
-```
+- Next.js and Express endpoint discovery
+- source-to-sink analysis
+- command injection, SQL injection, SSRF, path traversal and redirect detection
+- authentication-boundary detection
+- dependency/container/workflow discovery
+- CWE and OWASP mapping
+- optional Semgrep, Gitleaks and OSV adapters
+- persisted scans, BullMQ retries, SSE logs and attack-path correlation
 
-Optional scanners are documented in `docs/INSTALL-SCANNERS.md`. Their binaries are intentionally not included.
+See `docs/PHASE-3-SECURITY-INTELLIGENCE.md`.

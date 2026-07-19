@@ -12,7 +12,8 @@
     "seed": "tsx src/seed.ts"
   },
   "dependencies": {
-    "pg": "^8.13.3"
+    "pg": "^8.13.3",
+    "@sentinel/security-core": "*"
   },
   "devDependencies": {
     "@types/pg": "^8.11.11",

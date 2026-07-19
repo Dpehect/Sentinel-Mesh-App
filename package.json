@@ -1,6 +1,6 @@
 {
   "name": "sentinel-mesh",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "private": true,
   "packageManager": "npm@10.9.2",
   "workspaces": [
@@ -15,7 +15,7 @@
     "build": "npm-run-all build:packages build:apps",
     "build:packages": "npm run build -w @sentinel/security-core && npm run build -w @sentinel/plugin-sdk && npm run build -w @sentinel/db && npm run build -w @sentinel/scanner-runner",
     "build:apps": "npm run build -w @sentinel/web && npm run build -w @sentinel/worker",
-    "test": "npm-run-all test:core test:web",
+    "test": "npm-run-all test:core test:scanner test:web",
     "test:core": "npm run test -w @sentinel/security-core",
     "test:web": "npm run test -w @sentinel/web",
     "typecheck": "npm-run-all typecheck:*",
@@ -28,7 +28,9 @@
     "lint:worker": "npm run lint -w @sentinel/worker",
     "db:migrate": "npm run migrate -w @sentinel/db",
     "db:seed": "npm run seed -w @sentinel/db",
-    "verify": "npm run typecheck && npm run test && npm run build"
+    "verify": "npm run typecheck && npm run test && npm run build",
+    "test:worker": "npm run test -w @sentinel/worker",
+    "test:scanner": "npm run test -w @sentinel/scanner-runner"
   },
   "devDependencies": {
     "npm-run-all": "^4.1.5",

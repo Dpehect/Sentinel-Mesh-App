@@ -22,7 +22,8 @@
     "react-dom": "^19.2.0",
     "recharts": "^2.15.1",
     "three": "^0.173.0",
-    "zod": "^3.24.2"
+    "zod": "^3.24.2",
+    "@sentinel/db": "*"
   },
   "devDependencies": {
     "@testing-library/react": "^16.2.0",
