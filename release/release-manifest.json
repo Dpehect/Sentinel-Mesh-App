@@ -1,0 +1,29 @@
+{
+  "product": "Sentinel Mesh",
+  "version": "10.2.0",
+  "releaseChannel": "stable",
+  "releaseName": "Sentinel Mesh Final Production Release",
+  "minimumNodeVersion": "20",
+  "recommendedNodeVersion": "22",
+  "entryPoints": {
+    "commandCenter": "/command-center",
+    "operations": "/operations",
+    "rollouts": "/rollouts",
+    "system": "/system",
+    "hardening": "/security-hardening"
+  },
+  "verificationCommands": [
+    "npm install",
+    "npm run phase75:verify",
+    "npm run phase76:check",
+    "npm run final:verify",
+    "npm run release:package"
+  ],
+  "deploymentProfiles": [
+    "local",
+    "docker-compose-release"
+  ],
+  "dataDirectories": [
+    ".sentinel-data/"
+  ]
+}
