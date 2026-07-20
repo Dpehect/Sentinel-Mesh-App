@@ -1,3 +1,3 @@
 #!/bin/bash
 cd "$(dirname "$0")"
-node apply-phase-69.mjs
+node apply-phase-70.mjs

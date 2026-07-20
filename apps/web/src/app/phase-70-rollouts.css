@@ -1,0 +1,18 @@
+/* Phase 70 rollout console */
+.page-stack{display:grid;gap:1.25rem}
+.hero-card,.content-card{border:1px solid var(--border,#273244);background:var(--panel,#111a28);border-radius:1.25rem;padding:1.5rem}
+.hero-card{display:flex;justify-content:space-between;gap:2rem;align-items:center;background:linear-gradient(135deg,var(--panel,#111a28),#152847)}
+.hero-card h1,.content-card h2,.rollout-card h3{margin:.25rem 0}
+.eyebrow{font-size:.72rem;font-weight:800;letter-spacing:.14em;color:#79a7ff}
+.muted,.rollout-card p,.principle-grid p,.card-footnote{color:var(--muted,#9cabbe)}
+.metric{min-width:9rem;text-align:center;border:1px solid var(--border,#273244);border-radius:1rem;padding:1rem;background:rgba(255,255,255,.035)}
+.metric strong,.metric span{display:block}.metric strong{font-size:2rem}.metric span{font-size:.75rem;color:var(--muted,#9cabbe)}
+.section-heading,.rollout-card-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start}
+.button-link{border:1px solid var(--border,#273244);padding:.65rem .85rem;border-radius:.7rem;text-decoration:none}
+.rollout-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1rem;margin-top:1.25rem}
+.rollout-card{border:1px solid var(--border,#273244);border-radius:1rem;padding:1rem;background:rgba(255,255,255,.025)}
+.status{padding:.35rem .55rem;border-radius:999px;font-size:.7rem;background:#26354a}.status.ok{background:#173e35;color:#91e2c5}.status.warn{background:#47351b;color:#ffd28b}.status.danger{background:#4a2028;color:#ffadb9}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin:1rem 0}.detail-grid div{padding:.7rem;border-radius:.7rem;background:rgba(255,255,255,.03)}.detail-grid dt{font-size:.68rem;color:var(--muted,#9cabbe)}.detail-grid dd{margin:.25rem 0 0;font-weight:700}
+.wave-list{display:grid;gap:.5rem}.wave-row{display:grid;grid-template-columns:1fr auto auto;gap:.75rem;align-items:center;border-top:1px solid var(--border,#273244);padding-top:.65rem}.wave-row small{color:var(--muted,#9cabbe)}
+.card-footnote{font-size:.72rem;margin:1rem 0 0}.principle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1rem}.principle-grid article{border:1px solid var(--border,#273244);border-radius:.8rem;padding:1rem}
+@media(max-width:800px){.hero-card{align-items:flex-start;flex-direction:column}.principle-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.detail-grid,.principle-grid{grid-template-columns:1fr}.wave-row{grid-template-columns:1fr}.section-heading{align-items:flex-start;flex-direction:column}}
