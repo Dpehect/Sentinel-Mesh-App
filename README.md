@@ -1,58 +1,28 @@
-# Sentinel Mesh
+# Sentinel Mesh — Phase 10
 
-Local-first software security intelligence and evidence-aware attack-path simulation platform.
+Bu paket, internet bağlantısı ve ücretli servis gerektirmeyen yerel bir kontrol merkezi demosudur.
 
-## Product capabilities
+## Çalıştırma
 
-- Next.js security command center and public server-rendered reports.
-- Fastify scanner API, BullMQ/Valkey queue and PostgreSQL persistence.
-- TypeScript AST intelligence with source-to-sink evidence and CWE/OWASP mapping.
-- Optional Semgrep, Gitleaks and OSV adapters.
-- Trust-boundary-aware attack graph and defensive-control simulation.
-- GitHub App webhooks, incremental PR scans, Check Runs and merge gates.
-- Signed sessions, tenant guards, auditability, tests and hardened containers.
-- Scanner marketplace, typed plugin SDK, benchmarks and release automation.
+### macOS
+1. ZIP dosyasını açın.
+2. `START-MAC.command` dosyasına çift tıklayın.
+3. Güvenlik uyarısı çıkarsa dosyaya sağ tıklayıp **Aç** seçeneğini kullanın.
+4. Tarayıcıda `http://localhost:8080/app/` adresi açılır.
 
-## Start
+### Windows
+1. ZIP dosyasını açın.
+2. `START-WINDOWS.bat` dosyasına çift tıklayın.
+3. Tarayıcıda `http://localhost:8080/app/` adresi açılır.
 
-```bash
-npm install
-cp .env.example .env
-npm run dev
-```
+## Özellikler
+- Yerel kontrol merkezi
+- Saldırı grafı
+- Olay çözme / yeniden açma
+- Varlık sağlık görünümü
+- Karantina aksiyonu
+- Denetim kaydı
+- JSON rapor dışa aktarma
+- Harici paket veya API anahtarı yok
 
-Open `http://localhost:3000`. Demo mode works without external credentials.
-
-## Full local stack
-
-```bash
-docker compose up -d postgres redis
-npm run db:migrate
-npm run db:seed
-npm run dev
-```
-
-## Verification
-
-```bash
-npm run verify
-npm run test:e2e
-npm run benchmark
-```
-
-Documentation is under `docs/`. Optional scanner binaries are intentionally not included.
-
-
-## Production verification
-
-After installing dependencies, run:
-
-```bash
-npm run verify
-npm run test:e2e
-```
-
-The first command starts with an offline static package audit before type checking, tests and builds. See `docs/PHASE-8-PRODUCTION-COMPLETION.md`.
-
-## Enterprise control plane
-Phase 10 adds teams, hierarchical roles, scoped API tokens, policy evaluation and compliance evidence. Open `/enterprise` after signing in. SAML, SCIM and LDAP remain optional extension points; no paid provider is required for the included demo and local workflows.
+Bu faz demo ve entegrasyon katmanıdır; gerçek ağ trafiğine müdahale etmez.

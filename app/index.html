@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sentinel Mesh — Local Control Center</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">SM</div>
+        <div>
+          <strong>Sentinel Mesh</strong>
+          <span>Local Control Center</span>
+        </div>
+      </div>
+      <nav>
+        <button class="nav active" data-view="overview">Genel Bakış</button>
+        <button class="nav" data-view="graph">Saldırı Grafı</button>
+        <button class="nav" data-view="incidents">Olaylar</button>
+        <button class="nav" data-view="assets">Varlıklar</button>
+        <button class="nav" data-view="audit">Denetim Kaydı</button>
+      </nav>
+      <div class="status-card">
+        <span class="dot"></span>
+        <div><b>Yerel Mod</b><small>Bulut bağlantısı gerektirmez</small></div>
+      </div>
+    </aside>
+
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow">PHASE 10</p>
+          <h1 id="pageTitle">Genel Bakış</h1>
+        </div>
+        <div class="actions">
+          <button id="exportBtn" class="ghost">Raporu Dışa Aktar</button>
+          <button id="scanBtn" class="primary">Yerel Tarama Başlat</button>
+        </div>
+      </header>
+
+      <section id="overview" class="view active">
+        <div class="metrics">
+          <article><span>Korunan Varlık</span><b id="assetCount">0</b><small>Yerel ağ kapsamı</small></article>
+          <article><span>Açık Olay</span><b id="incidentCount">0</b><small>İnceleme bekliyor</small></article>
+          <article><span>Kritik Risk</span><b id="criticalCount">0</b><small>Öncelikli müdahale</small></article>
+          <article><span>Mesh Sağlığı</span><b id="meshHealth">—</b><small>Son kontrol sonucu</small></article>
+        </div>
+
+        <div class="grid two">
+          <article class="panel">
+            <div class="panel-head"><h2>Risk Dağılımı</h2><span>Canlı demo verisi</span></div>
+            <div id="riskBars" class="bars"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><h2>Son Olaylar</h2><span id="lastUpdated"></span></div>
+            <div id="recentIncidents" class="incident-list"></div>
+          </article>
+        </div>
+
+        <article class="panel recommendation">
+          <div>
+            <p class="eyebrow">ÖNERİLEN AKSİYON</p>
+            <h2 id="recommendationTitle">Analiz ediliyor…</h2>
+            <p id="recommendationText"></p>
+          </div>
+          <button id="applyRecommendation" class="primary">Öneriyi Uygula</button>
+        </article>
+      </section>
+
+      <section id="graph" class="view">
+        <article class="panel graph-panel">
+          <div class="panel-head">
+            <div><h2>Saldırı Yolu Görselleştirmesi</h2><span>Düğüme tıklayarak ayrıntıları görüntüleyin</span></div>
+            <div class="legend"><i class="safe"></i>Güvenli <i class="warn"></i>Riskli <i class="critical"></i>Kritik</div>
+          </div>
+          <div id="attackGraph" class="attack-graph"></div>
+          <div id="nodeDetail" class="node-detail">Bir düğüm seçin.</div>
+        </article>
+      </section>
+
+      <section id="incidents" class="view">
+        <article class="panel">
+          <div class="panel-head"><h2>Güvenlik Olayları</h2><span>Durumları yerel olarak yönetebilirsiniz</span></div>
+          <div id="incidentTable"></div>
+        </article>
+      </section>
+
+      <section id="assets" class="view">
+        <article class="panel">
+          <div class="panel-head"><h2>Mesh Varlıkları</h2><span>Bağlantı ve risk görünümü</span></div>
+          <div id="assetGrid" class="asset-grid"></div>
+        </article>
+      </section>
+
+      <section id="audit" class="view">
+        <article class="panel">
+          <div class="panel-head"><h2>Denetim Kaydı</h2><span>Tüm yerel işlemler</span></div>
+          <div id="auditLog" class="audit-log"></div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>

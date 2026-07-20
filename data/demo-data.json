@@ -1,0 +1,188 @@
+{
+  "meshHealth": 94,
+  "assets": [
+    {
+      "name": "EDGE-GW-01",
+      "type": "Gateway",
+      "ip": "10.0.0.1",
+      "status": "Çevrimiçi",
+      "health": 98
+    },
+    {
+      "name": "AUTH-SRV-01",
+      "type": "Identity",
+      "ip": "10.0.1.10",
+      "status": "Çevrimiçi",
+      "health": 93
+    },
+    {
+      "name": "DB-PROD-01",
+      "type": "Database",
+      "ip": "10.0.2.20",
+      "status": "Riskli",
+      "health": 71
+    },
+    {
+      "name": "WEB-APP-02",
+      "type": "Application",
+      "ip": "10.0.3.18",
+      "status": "Çevrimiçi",
+      "health": 96
+    },
+    {
+      "name": "OPS-LAPTOP-7",
+      "type": "Endpoint",
+      "ip": "10.0.8.44",
+      "status": "İzleniyor",
+      "health": 84
+    },
+    {
+      "name": "BACKUP-NAS-01",
+      "type": "Storage",
+      "ip": "10.0.9.5",
+      "status": "Çevrimiçi",
+      "health": 99
+    }
+  ],
+  "incidents": [
+    {
+      "title": "Şüpheli ayrıcalık yükseltme",
+      "asset": "DB-PROD-01",
+      "severity": "Kritik",
+      "status": "İnceleniyor",
+      "time": "3 dk önce"
+    },
+    {
+      "title": "Başarısız oturum açma dalgası",
+      "asset": "AUTH-SRV-01",
+      "severity": "Yüksek",
+      "status": "Açık",
+      "time": "12 dk önce"
+    },
+    {
+      "title": "Beklenmeyen dış bağlantı",
+      "asset": "OPS-LAPTOP-7",
+      "severity": "Orta",
+      "status": "İzleniyor",
+      "time": "31 dk önce"
+    },
+    {
+      "title": "Eski TLS yapılandırması",
+      "asset": "WEB-APP-02",
+      "severity": "Düşük",
+      "status": "Planlandı",
+      "time": "2 saat önce"
+    },
+    {
+      "title": "Yedek bütünlük kontrolü",
+      "asset": "BACKUP-NAS-01",
+      "severity": "Düşük",
+      "status": "Çözüldü",
+      "time": "Dün"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "internet",
+        "label": "Internet",
+        "x": 10,
+        "y": 50,
+        "status": "warn",
+        "detail": "Harici trafik giriş noktası. Sıkılaştırılmış gateway kuralları etkin."
+      },
+      {
+        "id": "gateway",
+        "label": "EDGE-GW-01",
+        "x": 28,
+        "y": 50,
+        "status": "safe",
+        "detail": "Ana ağ geçidi. Son taramada kritik zafiyet bulunmadı."
+      },
+      {
+        "id": "auth",
+        "label": "AUTH-SRV-01",
+        "x": 48,
+        "y": 28,
+        "status": "warn",
+        "detail": "Kimlik servisi. Başarısız oturum açma artışı gözlendi."
+      },
+      {
+        "id": "web",
+        "label": "WEB-APP-02",
+        "x": 48,
+        "y": 72,
+        "status": "safe",
+        "detail": "Uygulama düğümü. Güncel ve sağlıklı."
+      },
+      {
+        "id": "db",
+        "label": "DB-PROD-01",
+        "x": 72,
+        "y": 28,
+        "status": "critical",
+        "detail": "Kritik veritabanı düğümü. Olası ayrıcalık yükseltme davranışı."
+      },
+      {
+        "id": "backup",
+        "label": "BACKUP-NAS-01",
+        "x": 88,
+        "y": 55,
+        "status": "safe",
+        "detail": "Yedek depolama. Bütünlük doğrulaması başarılı."
+      },
+      {
+        "id": "ops",
+        "label": "OPS-LAPTOP-7",
+        "x": 70,
+        "y": 78,
+        "status": "warn",
+        "detail": "Operasyon uç noktası. Beklenmeyen bağlantı izleniyor."
+      }
+    ],
+    "edges": [
+      [
+        "internet",
+        "gateway"
+      ],
+      [
+        "gateway",
+        "auth"
+      ],
+      [
+        "gateway",
+        "web"
+      ],
+      [
+        "auth",
+        "db"
+      ],
+      [
+        "web",
+        "ops"
+      ],
+      [
+        "db",
+        "backup"
+      ],
+      [
+        "ops",
+        "backup"
+      ]
+    ]
+  },
+  "audit": [
+    {
+      "time": "Bugün 21:44",
+      "text": "Demo ortamı başlatıldı"
+    },
+    {
+      "time": "Bugün 21:40",
+      "text": "Yerel politika paketi doğrulandı"
+    },
+    {
+      "time": "Bugün 21:31",
+      "text": "Mesh varlık envanteri güncellendi"
+    }
+  ]
+}
