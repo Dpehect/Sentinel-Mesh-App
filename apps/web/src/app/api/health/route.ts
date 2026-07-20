@@ -1,1 +1,0 @@
-import {NextResponse} from "next/server";export async function GET(){return NextResponse.json({status:"ok",service:"sentinel-web",version:"0.9.0",mode:process.env.DEMO_MODE!=="false"?"demo":"persistent",timestamp:new Date().toISOString()})}

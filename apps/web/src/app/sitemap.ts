@@ -1,1 +1,0 @@
-import type {MetadataRoute} from "next";export default function sitemap():MetadataRoute.Sitemap{const b=process.env.APP_URL??"http://localhost:3000";return ["","/docs","/marketplace","/benchmarks","/reports/demo","/reports/sentinel/demo"].map((p,i)=>({url:b+p,lastModified:new Date(),changeFrequency:i?"weekly":"monthly",priority:i?0.7:1}))}

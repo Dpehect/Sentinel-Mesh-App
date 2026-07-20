@@ -1,6 +1,0 @@
-import type{Asset,Finding,Relation,Privilege,TrustZone}from"@sentinel/security-core";
-const zone=(a:Asset):TrustZone=>a.trustZone??(a.exposure==="public"?"internet":a.type==="database"?"data":a.type==="secret"?"secrets":a.type==="workflow"?"ci":"application");
-const privilege=(a:Asset):Privilege=>a.minimumPrivilege??(a.exposure==="public"?"anonymous":a.type==="database"||a.type==="secret"?"service":"user");
-export function enrichGraph(assets:Asset[],relations:Relation[],findings:Finding[]){for(const a of assets){a.trustZone=zone(a);a.minimumPrivilege=privilege(a);if(a.dataSensitivity===undefined)a.dataSensitivity=a.type==="database"?90:a.type==="secret"?100:a.criticality}
-for(const r of relations){const from=assets.find(a=>a.id===r.from),to=assets.find(a=>a.id===r.to);if(!from||!to)continue;r.crossesTrustBoundary=zone(from)!==zone(to);r.requiredPrivilege=r.requiredPrivilege??privilege(to);r.networkReachable=r.networkReachable??(["calls","exposes","authenticates"].includes(r.kind)||from.exposure==="public");r.confidence=r.confidence??.8;const correlated=findings.filter(f=>f.assetId===from.id||f.assetId===to.id).map(f=>f.id);r.findingIds=[...new Set([...(r.findingIds??[]),...correlated])];if(!r.evidence)r.evidence=`${from.name} ${r.kind.replaceAll("_"," ")} ${to.name}`}
-return{assets,relations}}

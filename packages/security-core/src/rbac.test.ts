@@ -1,2 +1,0 @@
-import {describe,it,expect} from "vitest";import {can,assertTenant} from "./rbac";
-describe("RBAC",()=>{it("prevents viewers from running scans",()=>expect(can("viewer","scan:run")).toBe(false));it("allows security engineers to triage",()=>expect(can("security_engineer","finding:triage")).toBe(true));it("blocks cross tenant access",()=>expect(()=>assertTenant("org-a","org-b")).toThrow(/Cross-tenant/));});

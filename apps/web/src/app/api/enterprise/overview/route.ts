@@ -1,2 +1,0 @@
-import {NextResponse} from "next/server";import {enterpriseDemo} from "@/lib/enterprise-demo";import {complianceSummary} from "@sentinel/enterprise-core";import {requireSession} from "@/lib/auth";
-export async function GET(){const session=await requireSession();if(!session)return NextResponse.json({error:"Unauthorized"},{status:401});return NextResponse.json({...enterpriseDemo,compliance:complianceSummary(enterpriseDemo.controls)})}

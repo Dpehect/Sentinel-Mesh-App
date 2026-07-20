@@ -1,2 +1,0 @@
-import {test,expect} from "@playwright/test";
-test("anonymous users are redirected and can sign in",async({page})=>{await page.goto("/dashboard");await expect(page).toHaveURL(/login/);await page.getByLabel("Email").fill("admin@sentinel.local");await page.getByLabel("Password").fill("Sentinel123!");await page.getByRole("button",{name:/open security console/i}).click();await expect(page).toHaveURL(/dashboard/);await expect(page.getByText(/security posture/i)).toBeVisible()});
