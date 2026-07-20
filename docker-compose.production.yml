@@ -1,25 +1,34 @@
 services:
-  web:
-    build:
-      context: .
-      dockerfile: apps/web/Dockerfile
-    ports: ["3000:3000"]
-    environment:
-      NODE_ENV: production
-      DATABASE_URL: postgresql://sentinel:sentinel@postgres:5432/sentinel
-      REDIS_URL: redis://valkey:6379
-    depends_on: [postgres, valkey]
-    read_only: true
-    tmpfs: [/tmp]
   postgres:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_USER: sentinel
-      POSTGRES_PASSWORD: sentinel
-      POSTGRES_DB: sentinel
-    volumes: [sentinel_pg:/var/lib/postgresql/data]
-  valkey:
+    image: postgres:17-alpine
+    environment: { POSTGRES_USER: sentinel, POSTGRES_PASSWORD: sentinel, POSTGRES_DB: sentinel }
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL","pg_isready -U sentinel"], interval: 10s, timeout: 5s, retries: 5 }
+    networks: [backend]
+  redis:
     image: valkey/valkey:8-alpine
-    command: ["valkey-server", "--save", "", "--appendonly", "no"]
-volumes:
-  sentinel_pg:
+    command: ["valkey-server","--appendonly","yes"]
+    volumes: [redis_data:/data]
+    networks: [backend]
+  web:
+    build: { context: ., dockerfile: apps/web/Dockerfile }
+    environment: { NODE_ENV: production, DATABASE_URL: postgresql://sentinel:sentinel@postgres:5432/sentinel, REDIS_URL: redis://redis:6379, WORKER_URL: http://worker:4010, DEMO_MODE: "false" }
+    depends_on: [postgres,redis]
+    read_only: true
+    tmpfs: [/tmp:size=64m]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    networks: [frontend,backend]
+  worker:
+    build: { context: ., dockerfile: apps/worker/Dockerfile }
+    environment: { NODE_ENV: production, REDIS_URL: redis://redis:6379 }
+    read_only: true
+    tmpfs: [/tmp:size=512m,mode=1777]
+    security_opt: [no-new-privileges:true]
+    cap_drop: [ALL]
+    pids_limit: 128
+    mem_limit: 1g
+    cpus: 1.5
+    networks: [backend]
+networks: { frontend: {}, backend: { internal: true } }
+volumes: { postgres_data: {}, redis_data: {} }

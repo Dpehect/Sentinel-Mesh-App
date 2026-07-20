@@ -1,0 +1,2 @@
+import type {ScannerPlugin} from "@sentinel/plugin-sdk";
+export const plugin:ScannerPlugin={id:"starter.todo-comments",name:"TODO Comment Scanner",version:"0.1.0",async scan(context){return context.files.filter(file=>file.content.includes("TODO SECURITY")).map((file,index)=>({id:`todo-${index}`,ruleId:"starter.todo-security",title:"Security TODO remains in source",description:"A security-specific TODO marker was found.",severity:"low",confidence:.9,category:"custom",scanner:"plugin-starter",evidence:[{file:file.path,source:"plugin"}],fingerprint:`todo:${file.path}`}))}};

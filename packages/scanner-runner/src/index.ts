@@ -1,6 +1,7 @@
 import { builtinScan } from "./builtin";
 import { semgrep, gitleaks, osv } from "./adapters";
 import { discover } from "./discovery";
+import { enrichGraph } from "./graph-enrichment";
 import { buildAttackPaths, securityScore, type Finding, type ScanResult } from "@sentinel/security-core";
 
 function dedupe(findings:Finding[]){
@@ -20,10 +21,11 @@ export async function scanRepository(repositoryPath:string,repositoryUrl:string,
   const normalized=dedupe(findings);
   for(const f of normalized){if(!f.assetId){const file=f.evidence[0]?.file;if(file)f.assetId=`file:${file}`}}
   log(`Correlating ${normalized.length} findings with ${discovered.assets.length} assets`);
-  const attackPaths=buildAttackPaths(discovered.assets,discovered.relations,normalized);
-  return {repository:repositoryUrl,startedAt,completedAt:new Date().toISOString(),findings:normalized,assets:discovered.assets,relations:discovered.relations,attackPaths,score:securityScore(normalized,discovered.assets)};
+  const enriched=enrichGraph(discovered.assets,discovered.relations,normalized);
+  const attackPaths=buildAttackPaths(enriched.assets,enriched.relations,normalized);
+  return {repository:repositoryUrl,startedAt,completedAt:new Date().toISOString(),findings:normalized,assets:enriched.assets,relations:enriched.relations,attackPaths,score:securityScore(normalized,enriched.assets)};
 }
 export * from "./builtin";
 export * from "./adapters";
-export * from "./discovery";
+export * from "./discovery"; export * from "./graph-enrichment";
 export * from "./ast-analyzer";

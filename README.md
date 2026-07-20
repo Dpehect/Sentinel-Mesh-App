@@ -1,10 +1,19 @@
-# Sentinel Mesh — Phase 3
+# Sentinel Mesh
 
-Local-first software security intelligence and attack-path simulation platform.
+Local-first software security intelligence and evidence-aware attack-path simulation platform.
 
-Phase 3 adds a TypeScript AST and framework-aware security engine on top of the PostgreSQL persistence and BullMQ/Valkey queue foundation.
+## Product capabilities
 
-## Fast start
+- Next.js security command center and public server-rendered reports.
+- Fastify scanner API, BullMQ/Valkey queue and PostgreSQL persistence.
+- TypeScript AST intelligence with source-to-sink evidence and CWE/OWASP mapping.
+- Optional Semgrep, Gitleaks and OSV adapters.
+- Trust-boundary-aware attack graph and defensive-control simulation.
+- GitHub App webhooks, incremental PR scans, Check Runs and merge gates.
+- Signed sessions, tenant guards, auditability, tests and hardened containers.
+- Scanner marketplace, typed plugin SDK, benchmarks and release automation.
+
+## Start
 
 ```bash
 npm install
@@ -12,17 +21,38 @@ cp .env.example .env
 npm run dev
 ```
 
-With `DEMO_MODE=true`, the UI runs without infrastructure. For persistent scans, start PostgreSQL and Valkey with Docker Compose and set `DEMO_MODE=false`.
+Open `http://localhost:3000`. Demo mode works without external credentials.
 
-## Phase 3 capabilities
+## Full local stack
 
-- Next.js and Express endpoint discovery
-- source-to-sink analysis
-- command injection, SQL injection, SSRF, path traversal and redirect detection
-- authentication-boundary detection
-- dependency/container/workflow discovery
-- CWE and OWASP mapping
-- optional Semgrep, Gitleaks and OSV adapters
-- persisted scans, BullMQ retries, SSE logs and attack-path correlation
+```bash
+docker compose up -d postgres redis
+npm run db:migrate
+npm run db:seed
+npm run dev
+```
 
-See `docs/PHASE-3-SECURITY-INTELLIGENCE.md`.
+## Verification
+
+```bash
+npm run verify
+npm run test:e2e
+npm run benchmark
+```
+
+Documentation is under `docs/`. Optional scanner binaries are intentionally not included.
+
+
+## Production verification
+
+After installing dependencies, run:
+
+```bash
+npm run verify
+npm run test:e2e
+```
+
+The first command starts with an offline static package audit before type checking, tests and builds. See `docs/PHASE-8-PRODUCTION-COMPLETION.md`.
+
+## Enterprise control plane
+Phase 10 adds teams, hierarchical roles, scoped API tokens, policy evaluation and compliance evidence. Open `/enterprise` after signing in. SAML, SCIM and LDAP remain optional extension points; no paid provider is required for the included demo and local workflows.

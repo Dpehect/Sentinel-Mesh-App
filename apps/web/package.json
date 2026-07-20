@@ -1,6 +1,6 @@
 {
   "name": "@sentinel/web",
-  "version": "0.9.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint || eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:integration": "vitest run src/**/*.integration.test.ts"
   },
   "dependencies": {
     "@react-three/drei": "^9.122.0",
@@ -23,7 +25,10 @@
     "recharts": "^2.15.1",
     "three": "^0.173.0",
     "zod": "^3.24.2",
-    "@sentinel/db": "*"
+    "@sentinel/db": "*",
+    "jose": "^6.0.8",
+    "@sentinel/ai-intelligence": "*",
+    "@sentinel/enterprise-core": "*"
   },
   "devDependencies": {
     "@testing-library/react": "^16.2.0",
@@ -34,6 +39,8 @@
     "eslint": "^9.20.0",
     "eslint-config-next": "^16.0.0",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^3.0.5",
+    "@playwright/test": "^1.52.0",
+    "jsdom": "^26.1.0"
   }
 }

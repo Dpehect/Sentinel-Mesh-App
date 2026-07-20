@@ -16,7 +16,7 @@ async function writeProgress(job: Job<ScanJobData>, progress: number, stage: str
 
 async function processScan(job: Job<ScanJobData, ScanJobResult>): Promise<ScanJobResult> {
   let directory = "";
-  const { repositoryUrl, projectId } = job.data;
+  const { repositoryUrl, projectId, branch, commitSha, changedFiles } = job.data;
 
   try {
     await writeProgress(job, 5, "preparing", `Preparing isolated workspace for ${repositoryUrl}`);
@@ -24,7 +24,7 @@ async function processScan(job: Job<ScanJobData, ScanJobResult>): Promise<ScanJo
 
     await writeProgress(job, 12, "cloning", "Cloning repository with shallow history");
     await withTimeout(
-      simpleGit().clone(repositoryUrl, directory, ["--depth", "1", "--single-branch", "--no-tags"]),
+      simpleGit().clone(repositoryUrl, directory, ["--depth", "1", "--single-branch", "--no-tags", ...(branch?["--branch",branch]:[])]),
       config.CLONE_TIMEOUT_MS,
       "Repository clone"
     );
@@ -45,11 +45,23 @@ async function processScan(job: Job<ScanJobData, ScanJobResult>): Promise<ScanJo
       "Security scan"
     );
 
+    if (changedFiles?.length) {
+      const changed = new Set(changedFiles);
+      result.findings = result.findings.filter((f) => !f.evidence[0]?.file || changed.has(f.evidence[0].file));
+      result.assets = result.assets.filter((a) => !a.path || changed.has(a.path) || ["database","secret","service"].includes(a.type));
+      const assetIds = new Set(result.assets.map((a) => a.id));
+      result.relations = result.relations.filter((r) => assetIds.has(r.from) && assetIds.has(r.to));
+      result.attackPaths = result.attackPaths.filter((p) => p.steps.every((step) => assetIds.has(step.assetId)));
+      await job.log(`Incremental scope applied to ${changedFiles.length} changed files`);
+    }
+
     await writeProgress(job, 96, "finalizing", "Finalizing normalized findings and attack paths");
     return {
       result,
       projectId,
       repositoryUrl,
+      branch,
+      commitSha,
       completedAt: new Date().toISOString()
     };
   } finally {

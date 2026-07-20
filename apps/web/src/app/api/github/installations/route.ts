@@ -1,0 +1,1 @@
+import {NextResponse} from "next/server";import {listGitHubInstallations,listWebhookDeliveries} from "@sentinel/db";export async function GET(){return NextResponse.json({installations:await listGitHubInstallations(),deliveries:await listWebhookDeliveries(30)})}

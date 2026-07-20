@@ -8,6 +8,14 @@ export type ScanJobData = {
   projectId?: string;
   requestedAt: string;
   requestId: string;
+  branch?: string;
+  commitSha?: string;
+  baseSha?: string;
+  changedFiles?: string[];
+  reason?: "manual"|"push"|"pull_request"|"schedule";
+  installationId?: number;
+  repositoryFullName?: string;
+  pullRequestNumber?: number;
 };
 
 export type ScanJobResult = {
@@ -15,6 +23,8 @@ export type ScanJobResult = {
   projectId?: string;
   repositoryUrl: string;
   completedAt: string;
+  branch?: string;
+  commitSha?: string;
 };
 
 const connection = getRedisConnection();

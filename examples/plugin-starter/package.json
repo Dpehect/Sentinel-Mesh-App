@@ -1,0 +1,1 @@
+{"name":"sentinel-plugin-starter","private":true,"type":"module","version":"0.1.0","dependencies":{"@sentinel/plugin-sdk":"*"}}

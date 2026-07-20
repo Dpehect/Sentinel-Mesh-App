@@ -1,0 +1,2 @@
+import {NextResponse} from "next/server";import {issueApiToken} from "@sentinel/enterprise-core";import {requireSession} from "@/lib/auth";
+export async function POST(){const session=await requireSession();if(!session)return NextResponse.json({error:"Unauthorized"},{status:401});const issued=issueApiToken();return NextResponse.json({token:issued.token,lastFour:issued.lastFour,warning:"Store this token now; it will not be shown again."},{status:201})}
