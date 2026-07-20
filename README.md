@@ -2,391 +2,894 @@
 
 <div align="center">
 
-**Local-first security intelligence, attack-path analysis, secure agent operations, and enterprise-grade remediation workflows — built as a modular TypeScript monorepo.**
+**A local-first, enterprise-grade cybersecurity operations platform that combines security analysis, attack-path modelling, distributed agent management, incident response, controlled remediation, governance, and production-readiness workflows in a single modular architecture.**
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-App_Router-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![Architecture](https://img.shields.io/badge/Architecture-Modular_Monorepo-6C63FF)](#architecture)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 </div>
 
 ---
 
-## Executive Summary
+## Project Links
 
-Sentinel Mesh is a security engineering platform designed to unify several workflows that are usually fragmented across separate tools:
+**Source Code**
 
-- source-code security scanning,
-- evidence-aware vulnerability analysis,
-- attack-path modelling,
-- secure distributed agent management,
-- rollout and remediation orchestration,
-- incident response,
-- compliance evidence,
-- auditability,
-- and production-readiness verification.
+https://github.com/Dpehect/Sentinel-Mesh-App
 
-The platform follows a **local-first architecture**. Core workflows can operate without requiring a paid cloud service, while optional integrations can extend the system for GitHub, external scanners, shared queues, databases, and enterprise environments.
+**Figma UI/UX Design**
 
-Sentinel Mesh is not structured as a single dashboard with hard-coded logic. It is built as a **workspace-based monorepo** containing independently testable security engines, operational services, web interfaces, worker processes, plugins, and infrastructure components.
-
-> The project demonstrates full-stack engineering, security architecture, distributed systems thinking, domain modelling, TypeScript package design, CI/CD discipline, and production-oriented software delivery.
+https://www.figma.com/make/xUUfVbWVQntkWOEKYYpyF5/Sentinel-Mesh-UI-UX-Design?t=4MDQBjgYPLlyK9A8-1
 
 ---
 
-## Why This Project Matters
+# About This Project
 
-Many security tools identify isolated findings but do not answer the operational questions that engineering and security teams care about:
+Sentinel Mesh is an independent end-to-end software engineering project that I conceived, designed, architected, and developed from the ground up.
 
-- Is the finding reachable?
-- What evidence supports it?
-- What assets and trust boundaries are involved?
-- Which remediation should be prioritised?
-- Can a fix or agent update be rolled out safely?
+I was personally responsible for the complete project lifecycle, including:
+
+- product vision,
+- problem definition,
+- feature planning,
+- technical research,
+- system architecture,
+- domain modelling,
+- information architecture,
+- UI/UX design,
+- design system creation,
+- user-flow design,
+- wireframing,
+- prototyping,
+- frontend development,
+- backend development,
+- API design,
+- component architecture,
+- security architecture,
+- data modelling,
+- worker architecture,
+- package design,
+- testing strategy,
+- deployment design,
+- release engineering,
+- documentation,
+- and portfolio presentation.
+
+Every major product decision, technical concept, interface, workflow, package boundary, security control, screen hierarchy, and implementation direction was created specifically for Sentinel Mesh.
+
+The project was not assembled from a prebuilt dashboard template. Its product structure, design language, architecture, workflows, and codebase were created as a custom system intended to represent a realistic enterprise cybersecurity platform.
+
+The Figma project is the original design foundation of Sentinel Mesh, while the GitHub repository contains the full engineering implementation.
+
+---
+
+# Executive Summary
+
+Sentinel Mesh is designed to solve a common problem in modern security platforms: security data is often fragmented across independent scanners, dashboards, alert feeds, deployment systems, and compliance tools.
+
+Traditional security products may identify vulnerabilities, but they frequently fail to answer the operational questions that matter most:
+
+- Is the issue actually reachable?
+- What technical evidence supports the finding?
+- Which identity, asset, service, or trust boundary is affected?
+- How should the remediation be prioritised?
+- Can the fix be deployed safely?
 - Who approved the operation?
-- What happens if the rollout fails?
-- Can the organisation prove what happened later?
+- What happens if the deployment fails?
+- Can the entire process be audited later?
+- Can the system recover without corrupting operational state?
 
-Sentinel Mesh approaches security as a connected operating system rather than a list of alerts.
+Sentinel Mesh addresses these problems through a unified security control plane.
 
-It combines:
-
-1. **Detection** — identify code, dependency, secret, cloud, container, and runtime risks.
-2. **Context** — enrich findings with evidence, ownership, topology, identity, and exposure.
-3. **Prioritisation** — model attack paths and calculate explainable risk.
-4. **Action** — create controlled remediation and rollout plans.
-5. **Governance** — enforce approvals, policies, tenant boundaries, and audit trails.
-6. **Recovery** — support checkpoints, rollback decisions, backups, and operational continuity.
-
----
-
-# Product Capabilities
-
-## 1. Security Command Center
-
-The Next.js web application provides a central operating surface for:
-
-- security posture,
-- scans,
-- findings,
-- attack paths,
-- remediation,
-- intelligence,
-- projects,
-- GitHub integration,
-- enterprise controls,
-- agent rollouts,
-- incidents,
-- platform health,
-- team access,
-- diagnostics,
-- and release readiness.
-
-The interface is designed around operational workflows instead of disconnected feature pages.
-
-Typical workflow:
+The platform connects:
 
 ```text
-Scan repository
-      ↓
-Generate evidence-backed findings
-      ↓
-Model reachable attack paths
-      ↓
-Prioritise by business and technical risk
-      ↓
-Plan remediation
-      ↓
-Deploy through controlled rollout waves
-      ↓
-Monitor health, incidents, and audit evidence
+Detection
+    ↓
+Evidence
+    ↓
+Context
+    ↓
+Risk Prioritisation
+    ↓
+Attack-Path Analysis
+    ↓
+Remediation Planning
+    ↓
+Controlled Rollout
+    ↓
+Incident Response
+    ↓
+Audit and Recovery
 ```
 
----
-
-## 2. Evidence-Aware Security Analysis
-
-Sentinel Mesh is designed to move beyond simple pattern matching.
-
-The analysis layer supports concepts such as:
-
-- source-to-sink evidence,
-- code locations,
-- data-flow context,
-- CWE and OWASP mapping,
-- risk explanations,
-- confidence scoring,
-- finding lifecycle management,
-- false-positive control,
-- and remediation guidance.
-
-This allows findings to be presented with technical reasoning instead of only severity labels.
+The result is a security platform that treats findings as part of an operational lifecycle rather than isolated alerts.
 
 ---
 
-## 3. Attack-Path Modelling
+# Core Product Vision
 
-The attack-path engine connects isolated security signals into paths that represent realistic attacker movement.
+Sentinel Mesh is built around five principles.
 
-It can model relationships between:
+## 1. Explainable Security
+
+Security decisions should include evidence, reasoning, confidence, affected assets, and remediation context.
+
+## 2. Local-First Operation
+
+Core workflows should remain usable without forcing the organisation to depend on a paid cloud provider.
+
+## 3. Controlled Automation
+
+Automation should be constrained by policies, approval gates, rate limits, cooldowns, health checks, and rollback conditions.
+
+## 4. Modular Architecture
+
+Each major capability should exist as an independently testable domain package with explicit boundaries.
+
+## 5. Operational Accountability
+
+Every important action should be traceable, reviewable, recoverable, and suitable for audit.
+
+---
+
+# Main Capabilities
+
+## Security Command Center
+
+The main web application acts as a unified operational interface for:
+
+- security posture,
+- active findings,
+- attack paths,
+- scans,
+- assets,
+- projects,
+- intelligence,
+- incidents,
+- agent fleets,
+- rollout operations,
+- compliance,
+- enterprise governance,
+- platform health,
+- release readiness,
+- backups,
+- and security hardening.
+
+The command center is designed around operational priorities instead of decorative metrics.
+
+It helps users answer:
+
+- What is the current risk?
+- What should be investigated first?
+- Which attack paths are most dangerous?
+- Which systems are degraded?
+- Which rollout requires approval?
+- Which incidents are active?
+- Is the platform ready for release?
+
+---
+
+## Evidence-Aware Security Analysis
+
+Sentinel Mesh is designed to enrich findings with technical context.
+
+A finding can include:
+
+- source location,
+- sink location,
+- code evidence,
+- data-flow information,
+- severity,
+- confidence,
+- CWE classification,
+- OWASP mapping,
+- affected component,
+- ownership,
+- business impact,
+- remediation guidance,
+- and lifecycle state.
+
+The purpose is to avoid presenting security results as unexplained red or orange badges.
+
+Each result should help a developer or analyst understand:
+
+- what happened,
+- why it matters,
+- where it originated,
+- how it can be exploited,
+- and how it should be resolved.
+
+---
+
+## Attack-Path Analysis
+
+The attack-path engine connects individual risks into meaningful security paths.
+
+It can represent relationships between:
 
 - public entry points,
 - applications,
+- services,
 - identities,
 - secrets,
 - databases,
 - cloud resources,
+- network zones,
 - containers,
-- network boundaries,
-- and defensive controls.
-
-The goal is to answer:
-
-> “Which combination of weaknesses creates a meaningful route to a critical asset?”
-
-This helps security teams prioritise reachable and consequential risk instead of treating every finding equally.
-
----
-
-## 4. Multi-Domain Security Coverage
-
-The repository is organised into focused security packages covering a broad range of domains, including:
-
-### Application and Source Security
-
-- source analysis,
-- secret detection,
-- dependency and supply-chain security,
-- CI/CD security,
-- vulnerability prioritisation,
-- detection-as-code,
-- finding lifecycle management.
-
-### Infrastructure and Runtime Security
-
-- cloud posture,
-- Kubernetes security,
-- container runtime security,
-- network detection and response,
-- endpoint detection and response,
-- external attack-surface analysis,
-- multi-cloud inventory.
-
-### Identity and Behaviour
-
-- identity governance,
-- identity attack paths,
-- user and entity behaviour analytics,
-- advanced UEBA,
-- asset inventory graphs,
-- risk graphs.
-
-### SOC and Response
-
-- SIEM correlation,
-- threat intelligence,
-- threat hunting,
-- MITRE ATT&CK coverage,
-- SOAR planning,
-- case management,
-- incident response,
-- SOC analyst workflows.
-
----
-
-## 5. Secure Distributed Agent Lifecycle
-
-Sentinel Mesh includes a substantial agent-security architecture intended for environments where distributed agents collect telemetry or execute approved defensive operations.
-
-Agent-focused packages cover:
-
-- secure enrolment,
-- certificate lifecycle,
-- key rotation,
-- secrets management,
-- policy distribution,
-- telemetry integrity,
-- runtime attestation,
-- command control,
-- secure updates,
-- self-protection,
-- offline queues,
-- bandwidth governance,
-- adaptive scheduling,
-- health scoring,
-- and health remediation.
-
-The design emphasises:
-
-- explicit trust,
-- signed communication,
-- deterministic policy evaluation,
-- constrained defensive actions,
-- replay resistance,
-- and human approval for high-impact operations.
-
----
-
-## 6. Fleet Orchestration and Safe Rollouts
-
-Sentinel Mesh models agent fleet operations as controlled, auditable workflows.
-
-Supported concepts include:
-
-- deterministic canary selection,
-- staged rollout waves,
-- global concurrency limits,
-- per-region concurrency limits,
-- maintenance windows,
-- health-based eligibility,
-- failure-rate circuit breakers,
-- human approval gates,
-- idempotency protection,
-- rollout pause and resume,
-- rollback decisions,
-- and recovery checkpoints.
-
-A rollout is not treated as a fire-and-forget deployment. It is modelled as a stateful security operation.
+- endpoints,
+- and business-critical assets.
 
 Example:
 
 ```text
-Plan
-  → Canary Wave
-  → Observe Health
-  → Approval Gate
-  → Progressive Waves
-  → Complete or Roll Back
+Public API
+    ↓
+Weak Authentication
+    ↓
+Leaked Service Credential
+    ↓
+Privileged Cloud Identity
+    ↓
+Production Database
 ```
+
+This enables a more realistic prioritisation model.
+
+A medium-severity finding may become critical if it participates in a reachable path to a sensitive asset.
 
 ---
 
-## 7. Tamper-Evident Audit Chain
+## Security Finding Lifecycle
 
-Operational events can be represented through a signed audit chain using:
+Findings are treated as stateful objects rather than static scan results.
+
+Typical lifecycle:
+
+```text
+Detected
+    ↓
+Triaged
+    ↓
+Assigned
+    ↓
+In Remediation
+    ↓
+Verified
+    ↓
+Resolved
+```
+
+The lifecycle can support:
+
+- assignment,
+- ownership,
+- status transitions,
+- verification,
+- false-positive handling,
+- suppression,
+- reopening,
+- and historical tracking.
+
+---
+
+## Risk Scoring
+
+Sentinel Mesh includes risk-oriented domain packages intended to combine multiple signals.
+
+Potential inputs include:
+
+- technical severity,
+- exploitability,
+- reachability,
+- asset criticality,
+- identity privilege,
+- internet exposure,
+- threat intelligence,
+- control effectiveness,
+- confidence,
+- and attack-path participation.
+
+The system is designed to prefer explainable risk calculations over black-box scores.
+
+---
+
+## Source and Application Security
+
+The platform architecture includes support for:
+
+- source-code analysis,
+- source-to-sink evidence,
+- secret detection,
+- dependency scanning,
+- supply-chain security,
+- CI/CD security,
+- pull-request analysis,
+- vulnerability prioritisation,
+- detection-as-code,
+- and remediation workflows.
+
+Optional adapters can integrate established tools such as:
+
+- Semgrep,
+- Gitleaks,
+- OSV-based dependency analysis.
+
+These tools are treated as extensible adapters rather than hard requirements.
+
+---
+
+## Cloud, Container, and Infrastructure Security
+
+Sentinel Mesh includes domain packages for:
+
+- cloud posture management,
+- Kubernetes security,
+- container runtime security,
+- external attack-surface management,
+- multi-cloud inventory,
+- network topology,
+- asset discovery,
+- network detection and response,
+- and endpoint detection and response.
+
+This architecture allows application findings to be correlated with infrastructure context.
+
+---
+
+## Identity Security
+
+Identity is treated as a first-class security domain.
+
+Relevant capabilities include:
+
+- identity governance,
+- privileged identity analysis,
+- identity attack paths,
+- role awareness,
+- credential relationships,
+- user and entity behaviour analytics,
+- and advanced UEBA concepts.
+
+This is important because many realistic attack paths rely on identity escalation rather than a single software vulnerability.
+
+---
+
+## Threat Intelligence and Detection
+
+The project architecture includes:
+
+- threat-intelligence processing,
+- IOC context,
+- detection-as-code,
+- SIEM correlation,
+- MITRE ATT&CK coverage,
+- threat hunting,
+- attack simulation,
+- SOC analyst workflows,
+- and case management.
+
+These modules are intended to connect proactive detection, analyst investigation, and operational response.
+
+---
+
+# Distributed Agent Architecture
+
+Sentinel Mesh contains a substantial secure-agent architecture for distributed collection and controlled defensive operations.
+
+The agent lifecycle includes:
+
+- secure enrolment,
+- identity establishment,
+- certificate issuance,
+- key rotation,
+- secrets handling,
+- policy distribution,
+- telemetry integrity,
+- runtime attestation,
+- command validation,
+- secure updates,
+- self-protection,
+- health scoring,
+- and remediation planning.
+
+---
+
+## Secure Agent Enrolment
+
+An agent should not become trusted simply because it connects to the control plane.
+
+Secure enrolment can include:
+
+- one-time enrolment tokens,
+- short-lived credentials,
+- certificate issuance,
+- identity binding,
+- environment validation,
+- and enrolment audit records.
+
+---
+
+## Telemetry Integrity
+
+Agent telemetry can be protected through:
+
+- signatures,
+- sequence numbers,
+- replay detection,
+- integrity hashes,
+- clock validation,
+- and identity verification.
+
+This reduces the risk of accepting forged, duplicated, or reordered telemetry.
+
+---
+
+## Runtime Attestation
+
+The runtime-attestation model can evaluate whether an agent is operating in an expected environment.
+
+Potential signals include:
+
+- binary identity,
+- runtime version,
+- host properties,
+- policy version,
+- certificate status,
+- configuration state,
+- and health indicators.
+
+---
+
+## Agent Self-Protection
+
+Agent self-protection concepts include:
+
+- integrity monitoring,
+- configuration validation,
+- restricted update channels,
+- process-health checks,
+- protected local secrets,
+- and tamper response.
+
+---
+
+## Offline Queue and Bandwidth Governance
+
+Agents may operate in unstable or bandwidth-limited environments.
+
+The architecture includes concepts for:
+
+- offline event queues,
+- retry control,
+- queue limits,
+- event prioritisation,
+- bandwidth budgets,
+- adaptive upload scheduling,
+- and backpressure.
+
+---
+
+## Adaptive Scheduling
+
+Agent tasks can be scheduled based on:
+
+- health,
+- priority,
+- resource availability,
+- bandwidth,
+- maintenance windows,
+- policy,
+- and operational risk.
+
+This prevents every agent from executing expensive operations at the same time.
+
+---
+
+## Health Scoring and Remediation
+
+Agent health can be calculated from signals such as:
+
+- telemetry freshness,
+- certificate validity,
+- policy version,
+- runtime integrity,
+- queue state,
+- update status,
+- and operational errors.
+
+The remediation engine can then produce constrained defensive recommendations.
+
+Examples:
+
+- refresh policy,
+- rotate credentials,
+- re-attest runtime,
+- restart a local service,
+- quarantine an agent,
+- or request human review.
+
+High-impact operations can require explicit approval.
+
+---
+
+# Fleet Orchestration
+
+Sentinel Mesh treats fleet operations as structured workflows.
+
+## Canary Selection
+
+The system can select a deterministic subset of agents for the first rollout wave.
+
+This enables:
+
+- controlled validation,
+- repeatable planning,
+- predictable risk,
+- and easier debugging.
+
+## Staged Waves
+
+Agents can be grouped into rollout waves based on:
+
+- region,
+- health,
+- environment,
+- criticality,
+- labels,
+- and policy.
+
+## Concurrency Limits
+
+The rollout engine can enforce:
+
+- global concurrency limits,
+- per-region concurrency limits,
+- and canary-size restrictions.
+
+## Maintenance Windows
+
+Operational changes can be restricted to approved time windows.
+
+## Circuit Breakers
+
+A rollout can pause automatically when:
+
+- failure rate exceeds a threshold,
+- agent health degrades,
+- canary success requirements are not met,
+- audit integrity fails,
+- or an approval is missing.
+
+---
+
+# Rollout State Machine
+
+A rollout can move through controlled states such as:
+
+```text
+Draft
+    ↓
+Awaiting Approval
+    ↓
+Approved
+    ↓
+Running
+    ↓
+Paused
+    ↓
+Completed
+```
+
+Failure paths may include:
+
+```text
+Running
+    ↓
+Failed
+    ↓
+Rolling Back
+    ↓
+Recovered
+```
+
+State changes can use optimistic concurrency to prevent stale operators from overwriting newer decisions.
+
+---
+
+# Approval Workflow
+
+Production-sensitive operations can require approval.
+
+An approval record can include:
+
+- rollout ID,
+- actor,
+- decision,
+- timestamp,
+- expected version,
+- reason,
+- and audit metadata.
+
+This makes approval part of the system model rather than an informal external process.
+
+---
+
+# Recovery Checkpoints
+
+Before a risky operation, the platform can create a recovery checkpoint.
+
+A checkpoint can include:
+
+- rollout state,
+- current version,
+- active wave,
+- agent results,
+- metadata,
+- timestamp,
+- creator,
+- and integrity checksum.
+
+Recovery restores the operation into a safe paused state rather than automatically continuing execution.
+
+---
+
+# Tamper-Evident Audit Chain
+
+Sentinel Mesh includes an audit-chain design for high-value operational events.
+
+The model uses:
 
 - canonical serialisation,
-- SHA-256 payload hashing,
+- SHA-256 payload hashes,
 - previous-record hash linking,
-- HMAC signatures,
-- sequence validation,
-- idempotency-key detection,
+- HMAC-SHA256 signatures,
+- strict sequence validation,
+- duplicate idempotency-key detection,
 - timestamp validation,
 - and constant-time signature comparison.
 
-If chain integrity fails, the system can make a defensive decision such as pausing a rollout.
+Example:
 
-This architecture is useful for:
+```text
+Record 1
+  hash: A1
+  previous: GENESIS
 
-- security investigations,
-- compliance evidence,
-- operational accountability,
-- and post-incident reconstruction.
+Record 2
+  hash: B2
+  previous: A1
+
+Record 3
+  hash: C3
+  previous: B2
+```
+
+Changing a previous record invalidates the chain.
+
+When integrity verification fails, the control plane can:
+
+- reject the event,
+- pause a rollout,
+- require investigation,
+- or prevent further transitions.
 
 ---
 
-## 8. Security Operations Center
+# Security Operations Center
 
-The operations layer supports:
+The operations center unifies:
 
-- incident creation,
-- severity classification,
-- incident lifecycle transitions,
-- optimistic concurrency,
-- assignment and ownership,
-- notification rules,
-- platform health snapshots,
-- team membership,
-- and role-based access.
+- incident management,
+- team access,
+- system health,
+- alerts,
+- notification policies,
+- rollout status,
+- and operational evidence.
 
-Example incident lifecycle:
+---
+
+## Incident Model
+
+An incident can include:
+
+- title,
+- description,
+- severity,
+- source,
+- status,
+- assignment,
+- tags,
+- version,
+- created time,
+- and updated time.
+
+Severity levels:
+
+```text
+Critical
+High
+Medium
+Low
+```
+
+Lifecycle:
 
 ```text
 Open
-  → Investigating
-  → Contained
-  → Resolved
+    ↓
+Investigating
+    ↓
+Contained
+    ↓
+Resolved
 ```
-
-Role examples:
-
-| Role | Typical Responsibility |
-|---|---|
-| Owner | Full local administration |
-| Security Admin | Security policy and access control |
-| Analyst | Investigation and incident handling |
-| Operator | Operational transitions and health telemetry |
-| Viewer | Read-only access |
 
 ---
 
-## 9. Enterprise and Multi-Tenant Controls
+## Notification Rules
 
-Sentinel Mesh includes architectural support for:
+Notification policies can define:
 
+- severity filters,
+- channels,
+- cooldown periods,
+- enablement state,
+- and rule ownership.
+
+Supported decision channels can include:
+
+- in-application alerts,
+- email,
+- and webhooks.
+
+The architecture separates the decision to notify from the external delivery provider.
+
+---
+
+## Platform Health
+
+Health snapshots can track:
+
+- web application,
+- worker,
+- queue,
+- database,
+- rollout store,
+- agent fleet,
+- and scanner services.
+
+Each component can report:
+
+- state,
+- latency,
+- timestamp,
+- and diagnostic details.
+
+---
+
+# Team and Role Management
+
+Sentinel Mesh includes a role-based operations model.
+
+| Role | Responsibility |
+|---|---|
+| Owner | Full administration and ownership |
+| Security Admin | Security policy and access management |
+| Analyst | Investigation and incident operations |
+| Operator | Operational transitions and health management |
+| Viewer | Read-only access |
+
+The permission model is designed to keep high-impact operations separate from ordinary observation.
+
+---
+
+# Enterprise Architecture
+
+The enterprise layer includes concepts for:
+
+- multi-tenancy,
 - tenant isolation,
-- hierarchical roles,
 - scoped API tokens,
-- enterprise policy evaluation,
+- role hierarchies,
+- policy enforcement,
 - compliance evidence,
 - quota management,
 - identity governance,
 - and auditability.
 
-External identity providers can be integrated as optional extension points, while local and demonstration workflows remain available without requiring a paid identity platform.
+The local-first design allows demonstration and self-hosted use without requiring an external enterprise identity vendor.
 
 ---
 
-## 10. GitHub-Native Security Workflows
+# Compliance and Governance
 
-The platform includes GitHub-oriented capabilities such as:
+The project includes domain concepts for:
+
+- policy evaluation,
+- compliance mapping,
+- evidence collection,
+- continuous compliance,
+- reporting,
+- audit records,
+- and governance workflows.
+
+Potential framework mappings may include:
+
+- OWASP,
+- CWE,
+- MITRE ATT&CK,
+- SOC 2,
+- ISO 27001,
+- NIST,
+- and organisation-specific policy sets.
+
+---
+
+# GitHub Integration
+
+Sentinel Mesh includes a GitHub-oriented security workflow.
+
+Capabilities include:
 
 - GitHub App integration,
 - installation handling,
-- webhook processing,
-- incremental pull-request scans,
-- security checks,
+- webhook verification,
+- pull-request analysis,
+- incremental scanning,
 - Check Runs,
-- and merge-gate concepts.
+- merge-gate decisions,
+- and repository onboarding.
 
-This supports a developer-first security model where findings can be surfaced close to the code-change lifecycle.
+Typical workflow:
 
----
-
-## 11. Plugin and Scanner Architecture
-
-Sentinel Mesh provides a plugin-oriented design for extending scanner behaviour.
-
-The repository includes:
-
-- a typed plugin SDK,
-- plugin authoring documentation,
-- starter examples,
-- scanner adapters,
-- and marketplace-oriented concepts.
-
-Optional external scanners may include tools such as:
-
-- Semgrep,
-- Gitleaks,
-- OSV-based dependency checks.
-
-These are intentionally treated as optional adapters rather than mandatory platform dependencies.
+```text
+Pull Request Opened
+    ↓
+Webhook Verified
+    ↓
+Changed Files Analysed
+    ↓
+Security Findings Generated
+    ↓
+Check Run Published
+    ↓
+Merge Policy Evaluated
+```
 
 ---
 
-# Technical Architecture
+# Plugin Architecture
+
+The platform uses a plugin-oriented approach for extending scanner and integration behaviour.
+
+The plugin architecture can support:
+
+- typed contracts,
+- isolated scanner adapters,
+- metadata,
+- capability declarations,
+- configuration schemas,
+- and result normalisation.
+
+This allows new security engines to be added without tightly coupling them to the web application.
+
+---
+
+# Architecture
 
 ## Monorepo Structure
 
 ```text
 Sentinel-Mesh-App/
 ├── apps/
-│   ├── web/                    # Next.js security console and APIs
-│   └── worker/                 # Background scan and queue processing
-│
+│   ├── web/
+│   └── worker/
 ├── packages/
 │   ├── security-core/
 │   ├── evidence-engine/
@@ -394,17 +897,14 @@ Sentinel-Mesh-App/
 │   ├── policy-engine/
 │   ├── audit-engine/
 │   ├── compliance-engine/
-│   ├── incident-response/
-│   ├── threat-intelligence/
 │   ├── scanner-runner/
 │   ├── db/
-│   └── ...                     # Additional domain-focused packages
-│
-├── plugins/                    # Scanner and platform extensions
-├── examples/                   # Example integrations and vulnerable demos
-├── docs/                       # Architecture, threat model, ADRs and phases
-├── scripts/                    # Verification, benchmark and release scripts
-├── release/                    # Release manifests and operational checklists
+│   └── many additional domain packages
+├── plugins/
+├── examples/
+├── docs/
+├── scripts/
+├── release/
 ├── docker-compose.yml
 ├── docker-compose.production.yml
 └── package.json
@@ -412,63 +912,80 @@ Sentinel-Mesh-App/
 
 ---
 
-## Architectural Style
+## Workspace Design
 
-Sentinel Mesh uses a modular architecture based on several principles:
+The root workspace manages:
 
-### Domain Isolation
+```text
+apps/*
+packages/*
+plugins/*
+```
 
-Each security capability is implemented as a focused package with:
+This architecture provides:
 
-- explicit types,
-- limited responsibilities,
+- shared tooling,
+- isolated package boundaries,
+- central build scripts,
+- consistent type checking,
 - independent tests,
-- and clear integration boundaries.
+- and reusable domain logic.
 
-### Local-First Operation
+---
 
-Core workflows are designed to work locally or in a self-hosted environment.
+## Application Layer
 
-This improves:
+### Web Application
 
-- data ownership,
-- privacy,
-- development speed,
-- testability,
-- and deployment flexibility.
+The web application is responsible for:
 
-### Deterministic Security Decisions
+- dashboards,
+- route handlers,
+- user-facing workflows,
+- command center,
+- operational views,
+- configuration,
+- and API access.
 
-Security-sensitive planning logic aims to be:
+### Worker Application
 
-- explainable,
-- reproducible,
-- policy-controlled,
-- and testable.
+The worker application is responsible for:
 
-Examples include rollout planning, risk scoring, health remediation, audit verification, and approval workflows.
+- background processing,
+- scan execution,
+- queue consumption,
+- scheduled jobs,
+- and long-running operations.
 
-### Defence in Depth
+---
 
-The platform applies multiple defensive layers:
+## Domain Packages
 
-- signed sessions,
-- authorisation guards,
-- tenant checks,
-- secure headers,
-- rate limiting,
-- audit logs,
-- policy evaluation,
-- integrity verification,
-- hardened containers,
-- backup validation,
-- and release gates.
+The package layer contains reusable security and operational logic.
+
+Examples include:
+
+- security core,
+- evidence engine,
+- attack-path engine,
+- policy engine,
+- audit engine,
+- quota engine,
+- observability engine,
+- disaster recovery,
+- incident response,
+- threat intelligence,
+- secure agent packages,
+- multi-tenant core,
+- and AI intelligence.
+
+This keeps security logic outside page components and route handlers.
 
 ---
 
 # Technology Stack
 
-## Frontend and Web Platform
+## Frontend
 
 - Next.js App Router
 - React
@@ -476,84 +993,317 @@ The platform applies multiple defensive layers:
 - Server Components
 - Route Handlers
 - Responsive CSS
-- Server-rendered operational dashboards
+- Component-based design
+- Accessible interface patterns
 
-## Backend and Processing
+## Backend
 
 - Node.js
-- Fastify-based worker/API patterns
-- Background queue processing
-- BullMQ-compatible queue architecture
-- Redis/Valkey support
-- PostgreSQL persistence
-- Local demonstration fallbacks
+- TypeScript
+- Worker processes
+- Background queue architecture
+- API route handlers
+- Domain services
+- Local-first persistence options
 
-## Testing and Quality
+## Data and Infrastructure
+
+- PostgreSQL
+- Redis or Valkey
+- Docker
+- Docker Compose
+- Local JSON persistence for selected workflows
+- Environment-based configuration
+
+## Testing
 
 - Vitest
 - Playwright
-- TypeScript strict type checking
-- Static repository verification
-- Integration tests
-- End-to-end tests
-- Benchmark scripts
+- strict TypeScript type checking
+- static repository verification
+- integration testing
+- end-to-end testing
+- benchmark scripts
+
+## Delivery
+
 - GitHub Actions
-
-## Infrastructure
-
-- Docker
-- Docker Compose
-- Hardened production container profiles
-- Health endpoints
-- Release manifests
-- Source packaging
-- CI release verification
+- Docker release profiles
+- release manifests
+- source packaging
+- production checklists
+- build verification
+- SHA-256 source manifests
 
 ---
 
-# Data and Control Flow
+# Design System
 
-```mermaid
-flowchart LR
-    A[Repository / Asset] --> B[Scanner Runner]
-    B --> C[Security Engines]
-    C --> D[Evidence Engine]
-    D --> E[Finding Lifecycle]
-    E --> F[Risk & Attack Path Engines]
-    F --> G[Policy / Compliance]
-    G --> H[Remediation Plan]
-    H --> I[Agent Fleet Rollout]
-    I --> J[Operations Center]
-    J --> K[Audit, Backup & Recovery]
-```
+I designed the complete UI/UX system specifically for Sentinel Mesh.
+
+The design system includes:
+
+- colour tokens,
+- semantic status colours,
+- typography hierarchy,
+- spacing scale,
+- card system,
+- navigation system,
+- table patterns,
+- dashboard layouts,
+- form controls,
+- incident cards,
+- severity labels,
+- health indicators,
+- rollout views,
+- audit timelines,
+- empty states,
+- error states,
+- loading states,
+- responsive behaviour,
+- and accessibility considerations.
+
+The design was created to communicate:
+
+- trust,
+- precision,
+- intelligence,
+- clarity,
+- speed,
+- and operational confidence.
+
+---
+
+# UI/UX Design Ownership
+
+The full product design was created by me.
+
+I personally designed:
+
+- the product information architecture,
+- global navigation,
+- page hierarchy,
+- user journeys,
+- command center,
+- dashboard structure,
+- security workflows,
+- finding views,
+- attack-path views,
+- incident flows,
+- agent-management screens,
+- rollout screens,
+- team-management screens,
+- system-health screens,
+- security-hardening screens,
+- component behaviour,
+- responsive rules,
+- and the visual design language.
+
+The Figma file is not a generic dashboard mockup. It represents the original visual system created specifically for this project.
+
+Figma:
+
+https://www.figma.com/make/xUUfVbWVQntkWOEKYYpyF5/Sentinel-Mesh-UI-UX-Design?t=4MDQBjgYPLlyK9A8-1
+
+---
+
+# Engineering Ownership
+
+I independently implemented the full engineering direction of Sentinel Mesh.
+
+My responsibilities included:
+
+## Product
+
+- defining the problem,
+- defining the target user,
+- planning the feature set,
+- creating the product architecture,
+- and defining operational workflows.
+
+## Design
+
+- designing every major screen,
+- creating the design system,
+- defining component behaviour,
+- creating interaction flows,
+- and preparing the Figma prototype.
+
+## Frontend
+
+- building the Next.js interface,
+- structuring routes,
+- creating reusable components,
+- implementing responsive layouts,
+- and connecting UI flows to domain logic.
+
+## Backend
+
+- designing APIs,
+- modelling state transitions,
+- creating worker workflows,
+- implementing storage adapters,
+- and defining operational services.
+
+## Security
+
+- defining the trust model,
+- designing agent security,
+- adding integrity controls,
+- modelling approval flows,
+- implementing audit concepts,
+- and creating production-hardening policies.
+
+## Architecture
+
+- designing the monorepo,
+- creating package boundaries,
+- separating domain logic,
+- defining build order,
+- and creating reusable contracts.
+
+## Quality
+
+- writing tests,
+- defining type-checking workflows,
+- creating static verification scripts,
+- and structuring release validation.
+
+## DevOps and Release
+
+- preparing Docker workflows,
+- creating CI concepts,
+- defining release manifests,
+- preparing packaging scripts,
+- and documenting deployment requirements.
+
+## Documentation
+
+- writing technical documentation,
+- describing architecture,
+- documenting phases,
+- and preparing the project for portfolio presentation.
 
 ---
 
 # Security Model
 
-Sentinel Mesh is designed with the assumption that security infrastructure itself is a high-value target.
+Sentinel Mesh assumes that the security platform itself is a high-value target.
 
-Key defensive concepts include:
+The architecture applies defence-in-depth principles.
+
+## Core Controls
 
 - least privilege,
-- scoped operations,
-- explicit approval,
-- local data ownership,
-- signed and chained audit records,
+- explicit trust,
 - secure agent identity,
-- replay protection,
-- constrained remediation actions,
-- integrity-verified recovery,
-- version-guarded state transitions,
-- and no arbitrary shell execution in defensive planning modules.
+- version-guarded updates,
+- auditability,
+- approval gates,
+- rate limiting,
+- secure response headers,
+- no-store policies,
+- integrity validation,
+- safe backups,
+- and constrained remediation.
 
-Detailed security documentation is available under:
+## Production Headers
+
+The hardening layer can define:
+
+- Content Security Policy,
+- HSTS,
+- frame protection,
+- MIME sniffing protection,
+- referrer policy,
+- permissions policy,
+- cross-origin opener policy,
+- and cross-origin resource policy.
+
+## Rate Limiting
+
+Sensitive endpoints can enforce request budgets and retry windows.
+
+## Audit Logging
+
+Security-relevant actions can be stored as append-only JSON-line records.
+
+## Cache Discipline
+
+Sensitive APIs use private, no-store cache policies.
+
+---
+
+# Backup and Recovery
+
+The release-readiness layer supports:
+
+- local backup generation,
+- SHA-256 file checksums,
+- backup manifest checksums,
+- safe restore,
+- path traversal prevention,
+- non-destructive restore by default,
+- and explicit overwrite control.
+
+Typical backup targets include:
+
+- operations state,
+- rollout state,
+- configuration metadata,
+- and local audit evidence.
+
+---
+
+# Release Readiness
+
+Sentinel Mesh includes production-readiness concepts such as:
+
+- Node.js version validation,
+- writable data-directory checks,
+- session-secret verification,
+- platform-health validation,
+- backup verification,
+- required and recommended checks,
+- and weighted readiness scoring.
+
+---
+
+# Data Flow
+
+```mermaid
+flowchart LR
+    A[Repository or Asset] --> B[Scanner Runner]
+    B --> C[Security Engines]
+    C --> D[Evidence Engine]
+    D --> E[Finding Lifecycle]
+    E --> F[Risk Scoring]
+    F --> G[Attack Path Engine]
+    G --> H[Policy and Compliance]
+    H --> I[Remediation Plan]
+    I --> J[Agent Fleet Rollout]
+    J --> K[Operations Center]
+    K --> L[Audit, Backup and Recovery]
+```
+
+---
+
+# Example User Journey
+
+## Repository Security Review
 
 ```text
-docs/SECURITY.md
-docs/THREAT-MODEL.md
-docs/RISK-METHODOLOGY.md
-docs/adr/
+1. User connects or selects a repository
+2. Scanner executes configured analysis
+3. Findings are normalised
+4. Evidence is attached
+5. Risk score is calculated
+6. Attack paths are generated
+7. Findings are prioritised
+8. Remediation is planned
+9. Security operation is approved
+10. Rollout is monitored
+11. Incident and audit records are preserved
 ```
 
 ---
@@ -565,9 +1315,9 @@ docs/adr/
 - Node.js 20 or newer
 - npm 10 or newer
 - Git
-- Docker and Docker Compose for the full infrastructure stack
+- Docker and Docker Compose for full infrastructure
 
-Check your versions:
+Verify:
 
 ```bash
 node --version
@@ -577,84 +1327,79 @@ docker --version
 
 ---
 
-## Local Development
+## Clone the Repository
 
 ```bash
 git clone https://github.com/Dpehect/Sentinel-Mesh-App.git
 cd Sentinel-Mesh-App
-
-npm install
-cp .env.example .env
-npm run dev
 ```
-
-Default local application:
-
-```text
-http://localhost:3000
-```
-
-The web and worker applications are started through the root workspace scripts.
 
 ---
 
-## Full Local Infrastructure
+## Install Dependencies
 
-Start the database and queue services:
+```bash
+npm install
+```
+
+---
+
+## Configure Environment
+
+```bash
+cp .env.example .env
+```
+
+Typical environment variables:
+
+```env
+NODE_ENV=development
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+SENTINEL_SESSION_SECRET=replace-with-a-long-random-value
+DATABASE_URL=postgresql://...
+REDIS_URL=redis://localhost:6379
+SENTINEL_DATA_ROOT=.sentinel-data
+GITHUB_APP_ID=
+GITHUB_PRIVATE_KEY=
+GITHUB_WEBHOOK_SECRET=
+```
+
+Never commit production secrets.
+
+---
+
+## Start Infrastructure
 
 ```bash
 docker compose up -d postgres redis
 ```
 
-Run database setup:
+---
+
+## Database Setup
 
 ```bash
 npm run db:migrate
 npm run db:seed
 ```
 
-Start the platform:
+---
+
+## Start Development
 
 ```bash
 npm run dev
 ```
 
----
+Default address:
 
-# Environment Configuration
-
-Use `.env.example` as the primary configuration reference.
-
-Typical categories include:
-
-```env
-# Application
-NODE_ENV=development
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-
-# Authentication
-SENTINEL_SESSION_SECRET=replace-with-a-long-random-value
-
-# Database
-DATABASE_URL=postgresql://...
-
-# Queue
-REDIS_URL=redis://localhost:6379
-
-# GitHub App
-GITHUB_APP_ID=
-GITHUB_PRIVATE_KEY=
-GITHUB_WEBHOOK_SECRET=
-
-# Local data
-SENTINEL_DATA_ROOT=.sentinel-data
+```text
+http://localhost:3000
 ```
 
-Do not commit real secrets.
-
 ---
 
-# Available Commands
+# Root Commands
 
 ## Development
 
@@ -702,50 +1447,56 @@ npm run db:seed
 npm run release:source
 ```
 
-Available release commands may expand as the repository's final release scripts are applied.
+Additional release commands may be available depending on the final applied release configuration.
 
 ---
 
 # Testing Strategy
 
-Sentinel Mesh uses multiple testing layers.
+## Unit Testing
 
-## Unit Tests
+Domain packages test deterministic behaviour such as:
 
-Domain packages test deterministic logic such as:
-
-- risk calculation,
-- policy evaluation,
-- attack-path construction,
-- queue behaviour,
-- quotas,
-- agent security,
+- risk scoring,
+- policy decisions,
+- attack-path creation,
 - rollout planning,
-- and remediation decisions.
+- rate limiting,
+- agent health,
+- audit verification,
+- backup validation,
+- and incident transitions.
 
-## Integration Tests
+## Integration Testing
 
-Integration tests validate boundaries between:
+Integration tests cover:
 
-- web APIs,
-- worker processing,
+- API and domain interaction,
+- worker execution,
 - persistence,
-- scanner execution,
-- and security controls.
+- scanners,
+- and operational state.
 
-## End-to-End Tests
+## End-to-End Testing
 
-Playwright-based tests validate user-facing workflows such as authentication and console navigation.
+Playwright can validate:
+
+- authentication,
+- navigation,
+- repository onboarding,
+- finding review,
+- and operational workflows.
 
 ## Static Verification
 
-Repository verification checks:
+Static checks validate:
 
+- required files,
 - workspace consistency,
-- required source files,
 - package structure,
+- route presence,
 - configuration,
-- and release readiness.
+- and release layout.
 
 ---
 
@@ -757,156 +1508,166 @@ Repository verification checks:
 docker compose -f docker-compose.production.yml up --build
 ```
 
-For hardened release profiles, use the release-specific Compose and environment files when present.
+If a hardened release profile is available:
 
-## Production Expectations
+```bash
+docker compose -f docker-compose.release.yml --env-file .env.release up --build
+```
 
-Before deployment:
+---
+
+# Production Checklist
+
+Before production deployment:
 
 - configure a strong session secret,
-- use a production PostgreSQL instance,
-- use a shared Redis/Valkey instance,
-- terminate TLS at a trusted proxy,
-- restrict network access,
-- configure backup retention,
-- review scanner permissions,
-- validate GitHub webhook secrets,
-- run the full verification pipeline.
+- configure PostgreSQL,
+- configure Redis or Valkey,
+- enable TLS,
+- restrict internal services,
+- validate webhook secrets,
+- verify backup integrity,
+- review agent permissions,
+- run all tests,
+- run type checking,
+- run the full build,
+- review security headers,
+- and confirm platform health.
 
 ---
 
-# Observability and Operations
+# Observability
 
-Sentinel Mesh includes architectural support for:
+The system architecture supports:
 
 - structured logs,
-- runtime health,
-- worker health,
+- health checks,
 - queue visibility,
 - scan events,
-- audit records,
-- platform metrics,
+- audit logs,
+- worker status,
 - component latency,
-- and operational readiness.
-
-Operational pages and APIs are designed to help answer:
-
-- What is currently running?
-- What failed?
-- Which assets are affected?
-- Who approved the action?
-- Can the system recover safely?
-- Is the platform ready for production?
+- and release readiness.
 
 ---
 
-# Engineering Decisions That Stand Out
+# Key Engineering Decisions
 
-This project demonstrates several decisions that are particularly relevant to senior engineering and security roles.
+## Modular Monorepo
 
-## 1. Package-Level Domain Modelling
+Each domain is isolated into a package.
 
-Instead of placing all logic inside the web application, Sentinel Mesh separates security domains into independently testable packages.
+Benefits:
 
-## 2. Explainability Over Black-Box Scoring
+- clearer ownership,
+- better testing,
+- reduced coupling,
+- reusable logic,
+- and easier scaling.
 
-Risk, remediation, rollout, and health decisions are intended to include reasons and evidence rather than only numeric outputs.
+## Explainable Security
 
-## 3. Safe Automation
+Findings, scores, and remediation decisions include reasons and evidence.
 
-Automation is constrained by:
+## Safe Automation
 
-- allowlists,
-- cooldowns,
-- concurrency limits,
+Automation is limited through:
+
 - approval gates,
-- version checks,
-- and rollback conditions.
+- cooldowns,
+- quotas,
+- rate limits,
+- maintenance windows,
+- and rollback logic.
 
-## 4. Operational Completeness
+## Operational Completeness
 
-The platform considers the complete lifecycle:
+The platform models the entire security lifecycle:
 
 ```text
 Detection → Context → Prioritisation → Action → Governance → Recovery
 ```
 
-## 5. Self-Hosted Flexibility
+## Local-First Flexibility
 
-External services improve scalability but are not required for understanding, developing, or demonstrating the core product.
+The product can be developed, demonstrated, and self-hosted without mandatory paid services.
 
 ---
 
-# Portfolio and Recruitment Perspective
+# What This Project Demonstrates
 
-Sentinel Mesh is especially relevant for roles involving:
+Sentinel Mesh demonstrates experience in:
 
-- Senior Full-Stack Engineering
-- Security Engineering
-- Application Security
-- Platform Engineering
-- DevSecOps
-- Backend Architecture
-- TypeScript and Node.js
-- Next.js
-- Distributed Systems
-- Security Automation
-- Cloud Security
-- SOC Tooling
-- Developer Experience
-- Technical Product Engineering
+- product thinking,
+- software architecture,
+- cybersecurity,
+- distributed systems,
+- full-stack development,
+- enterprise UX,
+- domain-driven design,
+- TypeScript package design,
+- secure automation,
+- platform engineering,
+- CI/CD,
+- Docker,
+- operational resilience,
+- and technical documentation.
 
-The repository demonstrates the ability to:
+---
 
-- design a large modular system,
-- model complex security domains,
-- create reusable TypeScript packages,
-- build full-stack operational interfaces,
-- reason about distributed trust,
-- implement deterministic safety controls,
-- structure CI and release workflows,
-- and communicate architecture through documentation and ADRs.
+# Relevant Roles
+
+This project is especially relevant to:
+
+- Full-Stack Engineer
+- Senior Frontend Engineer
+- Backend Engineer
+- Platform Engineer
+- Security Engineer
+- Application Security Engineer
+- DevSecOps Engineer
+- Cloud Security Engineer
+- Product Engineer
+- TypeScript Engineer
+- Next.js Engineer
+- Technical Product Engineer
 
 ---
 
 # Roadmap
 
-Potential future directions include:
+Potential future improvements include:
 
-- shared distributed rate limiting,
-- production SSO and SCIM connectors,
-- richer live topology visualisation,
-- expanded scanner marketplace support,
+- distributed rate limiting,
+- external identity-provider integration,
+- SCIM provisioning,
 - OpenTelemetry export,
-- managed deployment templates,
-- signed release artefacts,
-- advanced policy authoring UI,
+- richer topology visualisation,
+- advanced scanner marketplace support,
+- signed release artifacts,
 - multi-region control-plane support,
-- and deeper SIEM/SOAR integrations.
+- managed deployment templates,
+- and deeper SIEM and SOAR integrations.
 
 ---
 
 # Documentation
 
-Key documentation includes:
+Important documents may include:
 
 ```text
 docs/ARCHITECTURE.md
-docs/DEVELOPMENT-PLAN.md
 docs/THREAT-MODEL.md
 docs/RISK-METHODOLOGY.md
 docs/SECURITY.md
-docs/PLUGIN-AUTHORING.md
-docs/PUBLIC-REPORTS.md
 docs/ROADMAP.md
+docs/PLUGIN-AUTHORING.md
 docs/adr/
 ```
 
 ---
 
 # Contributing
-
-Contributions should follow the repository's engineering standards.
 
 Recommended workflow:
 
@@ -921,33 +1682,25 @@ npm run build
 Before opening a pull request:
 
 - keep package responsibilities focused,
-- add or update tests,
+- include tests,
 - document security-sensitive decisions,
 - avoid committing secrets,
-- verify backwards compatibility,
-- and explain operational impact.
-
-See:
-
-```text
-CONTRIBUTING.md
-CODE_OF_CONDUCT.md
-SECURITY.md
-```
+- review operational impact,
+- and preserve backwards compatibility.
 
 ---
 
-# Responsible Security Research
+# Responsible Disclosure
 
-Do not open public issues for sensitive vulnerabilities.
+Do not report sensitive vulnerabilities through public issues.
 
-Follow the instructions in `SECURITY.md` when reporting a security issue.
+Follow the process described in `SECURITY.md`.
 
 ---
 
 # License
 
-This project is licensed under the MIT License.
+Sentinel Mesh is licensed under the MIT License.
 
 See [LICENSE](LICENSE).
 
@@ -957,8 +1710,14 @@ See [LICENSE](LICENSE).
 
 ## Sentinel Mesh
 
-**Evidence-aware security intelligence. Controlled automation. Operational accountability.**
+**Designed, architected, and developed independently from product concept to production-oriented implementation.**
 
-Built to demonstrate how modern security platforms can be modular, explainable, local-first, and production-oriented.
+Source Code:
+
+https://github.com/Dpehect/Sentinel-Mesh-App
+
+UI/UX Design:
+
+https://www.figma.com/make/xUUfVbWVQntkWOEKYYpyF5/Sentinel-Mesh-UI-UX-Design?t=4MDQBjgYPLlyK9A8-1
 
 </div>
