@@ -1,0 +1,9 @@
+[ ] npm install
+[ ] npm run verify:final-layout
+[ ] npm run typecheck
+[ ] npm run test
+[ ] npm run build
+[ ] Verify /command-center
+[ ] Verify /operations
+[ ] Verify /rollouts
+[ ] Verify /system
