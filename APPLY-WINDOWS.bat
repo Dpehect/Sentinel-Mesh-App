@@ -1,4 +1,4 @@
 @echo off
 cd /d %~dp0
-node apply-phase-72.mjs
+node apply-phase-73.mjs
 pause
