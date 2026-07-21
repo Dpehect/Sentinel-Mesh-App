@@ -4,12 +4,7 @@
 
 **A local-first, enterprise-grade cybersecurity operations platform that combines security analysis, attack-path modelling, distributed agent management, incident response, controlled remediation, governance, and production-readiness workflows in a single modular architecture.**
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Next.js](https://img.shields.io/badge/Next.js-App_Router-000000?logo=next.js&logoColor=white)](https://nextjs.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-20%2B-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
-[![Architecture](https://img.shields.io/badge/Architecture-Modular_Monorepo-6C63FF)](#architecture)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
 
 </div>
 
@@ -23,7 +18,7 @@ https://github.com/Dpehect/Sentinel-Mesh-App
 
 **Figma UI/UX Design**
 
-https://www.figma.com/make/xUUfVbWVQntkWOEKYYpyF5/Sentinel-Mesh-UI-UX-Design?t=4MDQBjgYPLlyK9A8-1
+[https://www.figma.com/make/xUUfVbWVQntkWOEKYYpyF5/Sentinel-Mesh-UI-UX-Design?t=4MDQBjgYPLlyK9A8-1](https://www.figma.com/make/xUUfVbWVQntkWOEKYYpyF5/Sentinel-Mesh-UI-UX-Design?code-node-id=0-9&p=f&t=NFK068KkDXc7hRPk-0&fullscreen=1)
 
 ---
 
